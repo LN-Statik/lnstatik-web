@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LN · STATIK</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="vendor/fonts/fonts.css">
+<script src="vendor/msal-browser.min.js"></script>
+<script src="vendor/marked.min.js"></script>
+<script src="config.js"></script>
+<style>
+:root{--ink:#1F2328;--ink2:#4E555D;--ink3:#868D96;--line:#E3E6E8;--line2:#EEF0F1;--paper:#F6F7F7;--surface:#fff;--accent:#2F6FB0;--side:#1F2328}
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{font:16px/1.6 "Schibsted Grotesk",system-ui,sans-serif;color:var(--ink);background:var(--paper)}
+a{color:var(--accent)}button{font:inherit;cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:600;font-size:14px}
+.btn:hover{border-color:var(--ink3)}.btn.p{background:var(--ink);color:#fff;border-color:var(--ink)}.btn.q{border-color:transparent;background:transparent;color:var(--ink2)}.btn.bad{color:#B42318}
+input,select,textarea{font:inherit;color:inherit;border:1px solid var(--line);border-radius:8px;padding:9px 11px;background:#fff;width:100%}
+textarea{resize:vertical;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px;line-height:1.55}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit}
+.brand span{font-family:Outfit,sans-serif;font-weight:200;letter-spacing:.62em;color:#8B929B;font-size:15px}
+/* zámok */
+#gate{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:30px;text-align:center}
+#gate p{margin:0;color:var(--ink3)}#gate .lnk{background:none;border:0;color:var(--ink3);font-size:13px;text-decoration:underline;margin-top:40px}
+/* wiki */
+#app{display:none;grid-template-columns:290px 1fr;min-height:100%}
+body.on #app{display:grid}body.on #gate{display:none}
+aside{background:var(--side);color:#E9ECEE;padding:20px 16px;display:flex;flex-direction:column;gap:14px;position:sticky;top:0;height:100vh;overflow:auto}
+aside .brand span{color:#9AA0A8}
+aside input{background:#2B3036;border-color:#3A4047;color:#fff}aside input::placeholder{color:#8A9199}
+.cat{margin-top:6px}.cat>button{width:100%;display:flex;justify-content:space-between;background:none;border:0;color:#fff;font-weight:600;padding:6px 6px;border-radius:6px;font-size:14.5px}
+.cat>button:hover{background:#2B3036}.cat>button small{color:#8A9199;font-weight:400}
+.cat ul{list-style:none;margin:2px 0 6px;padding:0 0 0 8px}.cat li a{display:block;color:#C9CED3;text-decoration:none;padding:4px 8px;border-radius:6px;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cat li a:hover{background:#2B3036;color:#fff}.cat li a.on{background:#fff;color:var(--ink)}.cat li a .pub{color:#7FC79A;font-size:11px;margin-left:4px}
+aside .foot{margin-top:auto;font-size:12.5px;color:#8A9199;display:flex;flex-direction:column;gap:6px}aside .foot button{background:none;border:0;color:#B9BFC5;text-align:left;padding:0;font-size:12.5px}
+main{padding:34px 44px 80px;max-width:1100px;width:100%}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px;flex-wrap:wrap}
+.crumb{color:var(--ink3);font-size:14px}
+.home h1{font-size:34px;margin:0 0 6px;letter-spacing:-.02em}.home .lead{color:var(--ink2);margin:0 0 26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:6px}
+.card:hover{border-color:var(--ink3)}.card b{font-size:17px}.card span{color:var(--ink3);font-size:13.5px}
+.recent{margin-top:30px}.recent h2{font-size:18px}.recent a{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line2);color:inherit;text-decoration:none}.recent a span{color:var(--ink3);font-size:13px;white-space:nowrap}
+article.doc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:34px 40px}
+.doc h1{font-size:32px;line-height:1.15;margin:0 0 8px;letter-spacing:-.02em}.meta{color:var(--ink3);font-size:13.5px;margin-bottom:24px;display:flex;gap:12px;flex-wrap:wrap}
+.tag{display:inline-block;padding:1px 9px;border-radius:999px;font-size:12px;font-weight:600;background:var(--line2);color:var(--ink2)}.tag.pub{background:#E7F4EC;color:#1E6B43}
+.md h2{font-size:23px;margin:30px 0 10px;letter-spacing:-.01em}.md h3{font-size:18.5px;margin:24px 0 8px}.md p{margin:0 0 14px}
+.md table{border-collapse:collapse;margin:8px 0 18px;width:100%;font-size:15px}.md th,.md td{border:1px solid var(--line);padding:7px 10px;text-align:left}.md th{background:var(--paper)}
+.md code{background:var(--paper);padding:1px 5px;border-radius:4px;font-size:.92em}.md pre{background:var(--paper);padding:14px;border-radius:8px;overflow:auto}.md pre code{background:none;padding:0}
+.md img{max-width:100%;border-radius:8px;border:1px solid var(--line)}.md blockquote{margin:0 0 14px;padding:10px 16px;border-left:3px solid var(--accent);background:#F3F7FC;color:var(--ink2)}
+.md ul,.md ol{padding-left:24px;margin:0 0 14px}.md hr{border:0;border-top:1px solid var(--line);margin:24px 0}
+.ed{display:grid;grid-template-columns:1fr 1fr;gap:16px}.ed .pv{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 22px;overflow:auto;max-height:70vh}
+.ed textarea{min-height:60vh}.row{display:grid;grid-template-columns:2fr 1fr auto;gap:12px;align-items:end;margin-bottom:14px}
+label.l{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600;color:var(--ink2)}
+.chk{display:flex;gap:8px;align-items:center;font-size:14px;font-weight:600;white-space:nowrap;padding-bottom:9px}.chk input{width:18px;height:18px}
+.tools{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}.tools button{padding:5px 10px;font-size:13px}
+.status{font-size:13px;color:var(--ink3)}
+.empty{color:var(--ink3);background:#fff;border:1px dashed var(--line);border-radius:12px;padding:26px;text-align:center}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:9px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9}#toast.on{opacity:1}
+.menu{display:none}
+@media(max-width:860px){#app{grid-template-columns:1fr}aside{position:fixed;inset:0 25% 0 0;z-index:5;transform:translateX(-105%);transition:transform .2s;height:100%}body.nav aside{transform:none}
+ main{padding:16px 14px 60px}.menu{display:inline-flex}article.doc{padding:22px 18px}.ed{grid-template-columns:1fr}.row{grid-template-columns:1fr}.ed .pv{max-height:none}}
+</style>
+</head>
+<body>
+<div id="gate"></div>
+<div id="app">
+ <aside id="side"></aside>
+ <main id="main"></main>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+const LOGO=(ink)=>`<svg viewBox="15.7 0 59.8 40" height="26" aria-hidden="true" style="display:block;overflow:visible"><defs><clipPath id="lc"><path d="M-10 -10 H200 V50 H-10 Z M53 44 L40.8 25 L200 25 L200 50 Z" clip-rule="evenodd"/></clipPath></defs><path clip-path="url(#lc)" d="M19.7 0 V28 Q19.7 36 27.7 36 H60" fill="none" stroke="#8B929B" stroke-width="8"/><path d="M35.5 28 V11 Q35.5 4 42 4 Q45 4 47 7 L64.5 32.5 Q67 36 70 36 Q71.5 36 71.5 33 V0" fill="none" stroke="${ink}" stroke-width="8" stroke-linejoin="round"/></svg>`;
+const brand=ink=>`<a class="brand" href="#" aria-label="LN Statik – úvod">${LOGO(ink)}<span>· STATIK</span></a>`;
+const CATS=[['murivo','Murivo'],['beton','Betón'],['ocel','Oceľ'],['drevo','Drevo'],['zaklady','Základy a geotechnika'],['zatazenia','Zaťaženia'],['normy','Normy a literatúra'],['pomocky','Pomôcky a tabuľky'],['ine','Iné']];
+const catName=k=>(CATS.find(c=>c[0]===k)||[,k])[1];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const toast=t=>{const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2600)};
+const fdt=ms=>ms?new Date(ms).toLocaleDateString('sk-SK'):'';
+
+// ---------- Microsoft + OneDrive ----------
+const CFG=window.LNS_CONFIG||{};const SCOPES=['User.Read','Files.ReadWrite'];const GRAPH='https://graph.microsoft.com/v1.0';
+const BASES=['Dokumenty/1-- LNStatik/4_LNStatik','Documents/1-- LNStatik/4_LNStatik','1-- LNStatik/4_LNStatik'];
+const enc=p=>p.split('/').map(encodeURIComponent).join('/');
+let msal,account,base=null,etag=null;
+async function token(){try{return (await msal.acquireTokenSilent({scopes:SCOPES,account})).accessToken}catch(e){await msal.acquireTokenRedirect({scopes:SCOPES,account});throw e}}
+async function g(path,opt={}){const t=await token();return fetch(path.startsWith('http')?path:GRAPH+path,{...opt,headers:{Authorization:'Bearer '+t,...(opt.headers||{})}})}
+async function findBase(){for(const b of BASES){const r=await g(`/me/drive/root:/${enc(b)}?$select=id`);if(r.ok){base=b+'/LNStatik_wiki';return}}base='LNStatik_wiki'}
+const FILE=()=>`/me/drive/root:/${enc(base+'/wiki.json')}`;
+let W={articles:{},del:{}};
+async function pull(){const m=await g(FILE()+'?$select=eTag');if(m.status===404){etag=null;return {articles:{},del:{}}}if(!m.ok)throw new Error('read '+m.status);
+  etag=(await m.json()).eTag;const c=await g(FILE()+':/content');const j=await c.json();return {articles:j.articles||{},del:j.del||{}}}
+async function push(changedId){const body=()=>JSON.stringify({app:'LNStatik wiki',verzia:1,ulozene:new Date().toISOString(),articles:W.articles,del:W.del});
+  for(let i=0;i<3;i++){const r=await g(FILE()+':/content',{method:'PUT',headers:{'Content-Type':'application/json',...(etag?{'If-Match':etag}:{})},body:body()});
+    if(r.ok){etag=(await r.json()).eTag;return}
+    if(r.status===412||r.status===409){const R=await pull();const mine=W.articles[changedId],gone=W.del[changedId];
+      for(const [k,a] of Object.entries(R.articles)){const l=W.articles[k];if(!l||(a.updated||0)>(l.updated||0))W.articles[k]=a}
+      for(const [k,t] of Object.entries(R.del)){if(!W.articles[k]||(W.articles[k].updated||0)<t){delete W.articles[k];W.del[k]=t}}
+      if(mine)W.articles[changedId]=mine;if(gone){delete W.articles[changedId];W.del[changedId]=gone}continue}
+    throw new Error('write '+r.status)}throw new Error('konflikt')}
+const imgCache={};
+async function imgUrl(id){if(imgCache[id])return imgCache[id];const r=await g(`/me/drive/items/${encodeURIComponent(id)}?$select=@microsoft.graph.downloadUrl`);const j=await r.json();return imgCache[id]=j['@microsoft.graph.downloadUrl']}
+async function uploadImg(file){const name=Date.now().toString(36)+'_'+(file.name||'obrazok.png').replace(/[\\/:*?"<>|#%\s]/g,'_');
+  let blob=file;if(file.size>600000&&/^image\/(jpeg|png|webp)/.test(file.type)){blob=await shrink(file)}
+  const r=await g(`/me/drive/root:/${enc(base+'/obrazky/'+name)}:/content`,{method:'PUT',headers:{'Content-Type':blob.type||'image/png'},body:blob});if(!r.ok)throw new Error('upload '+r.status);return (await r.json()).id}
+async function shrink(f){const img=await createImageBitmap(f);const k=Math.min(1,1800/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);return await new Promise(r=>c.toBlob(r,'image/jpeg',0.82))}
+
+// ---------- vykreslenie ----------
+marked.setOptions({gfm:true,breaks:false});
+function md(text){return marked.parse(String(text||''))}
+async function fixImgs(root){for(const im of root.querySelectorAll('img[src^="od:"]')){const id=im.getAttribute('src').slice(3);im.removeAttribute('src');im.alt=im.alt||'obrázok';try{im.src=await imgUrl(id)}catch(e){im.alt='Obrázok sa nepodarilo načítať'}}}
+const S={view:'home',id:null,q:'',open:{}};
+const list=()=>Object.entries(W.articles).map(([id,a])=>({id,...a}));
+function drawSide(){const q=S.q.trim().toLowerCase();const all=list().filter(a=>!q||(a.title+' '+a.body).toLowerCase().includes(q)).sort((a,b)=>a.title.localeCompare(b.title,'sk'));
+  $('#side').innerHTML=`${brand('#F4F5F6')}
+  <input id="q" type="search" placeholder="Hľadať v článkoch…" aria-label="Hľadať" value="${esc(S.q)}">
+  <button class="btn p" id="new" style="justify-content:center">+ Nový článok</button>
+  <nav aria-label="Kategórie">${CATS.map(([k,n])=>{const it=all.filter(a=>a.cat===k);const open=q?it.length>0:(S.open[k]??(it.some(a=>a.id===S.id)));
+    return `<div class="cat"><button data-cat="${k}" aria-expanded="${open}">${esc(n)} <small>${it.length||''}</small></button>${open&&it.length?`<ul>${it.map(a=>`<li><a href="#a/${a.id}" class="${a.id===S.id?'on':''}">${esc(a.title)}${a.public?'<span class="pub">●</span>':''}</a></li>`).join('')}</ul>`:''}</div>`}).join('')}</nav>
+  <div class="foot"><span id="st">Uložené v OneDrive</span><span>${esc(account&&account.username||'')}</span><button id="out">Odhlásiť sa</button></div>`;
+  const qi=$('#q');qi.oninput=()=>{S.q=qi.value;const p=qi.selectionStart;drawSide();const n=$('#q');n.focus();n.setSelectionRange(p,p)};
+  $('#new').onclick=()=>{location.hash='#novy'};$('#out').onclick=()=>msal.logoutRedirect({account});
+  document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{const k=b.dataset.cat;S.open[k]=b.getAttribute('aria-expanded')!=='true';drawSide()});
+  document.querySelectorAll('aside a[href^="#a/"]').forEach(a=>a.onclick=()=>document.body.classList.remove('nav'))}
+const topbar=crumb=>`<div class="top"><div style="display:flex;gap:10px;align-items:center"><button class="btn menu" onclick="document.body.classList.toggle('nav')" aria-label="Menu">☰</button><span class="crumb">${crumb}</span></div><div id="tb" style="display:flex;gap:8px"></div></div>`;
+function vHome(){const all=list();const rec=all.sort((a,b)=>(b.updated||0)-(a.updated||0)).slice(0,8);
+  $('#main').innerHTML=topbar('Wiki')+`<div class="home"><h1>Moja statická wiki</h1><p class="lead">Poznámky, tabuľky a pomôcky rozdelené podľa materiálov. Zatiaľ je to súkromné – vidíš to len ty. Článok označený <span class="tag pub">verejný</span> sa neskôr zobrazí aj ostatným.</p>
+  <div class="grid">${CATS.map(([k,n])=>{const c=all.filter(a=>a.cat===k).length;return `<a class="card" href="#k/${k}"><b>${esc(n)}</b><span>${c?c+' '+(c===1?'článok':c<5?'články':'článkov'):'zatiaľ prázdne'}</span></a>`}).join('')}</div>
+  <div class="recent"><h2>Naposledy upravené</h2>${rec.length?rec.map(a=>`<a href="#a/${a.id}"><b>${esc(a.title)}</b><span>${esc(catName(a.cat))} · ${fdt(a.updated)}</span></a>`).join(''):'<div class="empty">Zatiaľ žiadne články. Klikni na „+ Nový článok“.</div>'}</div></div>`}
+function vCat(k){const it=list().filter(a=>a.cat===k).sort((a,b)=>a.title.localeCompare(b.title,'sk'));
+  $('#main').innerHTML=topbar(`<a href="#">Wiki</a> / ${esc(catName(k))}`)+`<div class="home"><h1>${esc(catName(k))}</h1><p class="lead">${it.length} ${it.length===1?'článok':it.length>1&&it.length<5?'články':'článkov'}</p>
+  ${it.length?`<div class="recent">${it.map(a=>`<a href="#a/${a.id}"><b>${esc(a.title)} ${a.public?'<span class="tag pub">verejný</span>':''}</b><span>${fdt(a.updated)}</span></a>`).join('')}</div>`:`<div class="empty">V tejto kategórii zatiaľ nič nie je. <a href="#novy/${k}">Napísať prvý článok</a></div>`}</div>`}
+function vArt(id){const a=W.articles[id];if(!a){location.hash='#';return}
+  $('#main').innerHTML=topbar(`<a href="#">Wiki</a> / <a href="#k/${a.cat}">${esc(catName(a.cat))}</a>`)+`<article class="doc"><h1>${esc(a.title)}</h1><div class="meta"><span>${esc(catName(a.cat))}</span><span>Upravené ${fdt(a.updated)}</span><span class="tag ${a.public?'pub':''}">${a.public?'verejný':'súkromný'}</span></div><div class="md" id="md">${md(a.body)}</div></article>`;
+  $('#tb').innerHTML=`<button class="btn" id="ed">Upraviť</button>`;$('#ed').onclick=()=>location.hash='#upravit/'+id;fixImgs($('#md'))}
+function vEdit(id,cat){const a=id?W.articles[id]:{title:'',cat:cat||'murivo',body:'',public:false};if(id&&!a){location.hash='#';return}
+  $('#main').innerHTML=topbar(id?`Úprava: ${esc(a.title)}`:'Nový článok')+`<form id="f">
+  <div class="row"><label class="l">Názov<input name="title" required value="${esc(a.title)}" placeholder="napr. Pevnosť muriva v tlaku"></label>
+  <label class="l">Kategória<select name="cat">${CATS.map(([k,n])=>`<option value="${k}" ${k===a.cat?'selected':''}>${esc(n)}</option>`).join('')}</select></label>
+  <label class="chk"><input type="checkbox" name="public" ${a.public?'checked':''}> Verejný</label></div>
+  <div class="tools"><button type="button" class="btn" data-ins="## ">Nadpis</button><button type="button" class="btn" data-wrap="**">Tučné</button><button type="button" class="btn" data-wrap="*">Kurzíva</button><button type="button" class="btn" data-ins="- ">Odrážka</button>
+   <button type="button" class="btn" data-tbl="1">Tabuľka</button><button type="button" class="btn" data-ins="> ">Poznámka</button><button type="button" class="btn" id="img">Obrázok</button><input type="file" id="imgf" accept="image/*" hidden></div>
+  <div class="ed"><textarea name="body" id="body" aria-label="Text článku" placeholder="Píš sem… Obrázok môžeš aj vložiť (Ctrl+V) alebo pretiahnuť.">${esc(a.body)}</textarea><div class="pv md" id="pv"></div></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:10px;flex-wrap:wrap"><div>${id?'<button type="button" class="btn bad" id="del">Zmazať článok</button>':''}</div>
+  <div style="display:flex;gap:8px;align-items:center"><span class="status" id="sv"></span><button type="button" class="btn q" id="cancel">Zrušiť</button><button class="btn p">Uložiť</button></div></div></form>`;
+  const f=$('#f'),ta=$('#body');let pt;const prev=()=>{clearTimeout(pt);pt=setTimeout(()=>{$('#pv').innerHTML=md(ta.value)||'<p style="color:#868D96">Náhľad…</p>';fixImgs($('#pv'))},150)};ta.oninput=prev;prev();
+  const ins=(t)=>{const s=ta.selectionStart,e=ta.selectionEnd;ta.setRangeText(t,s,e,'end');ta.focus();prev()};
+  document.querySelectorAll('[data-ins]').forEach(b=>b.onclick=()=>{const s=ta.selectionStart;const ls=ta.value.lastIndexOf('\n',s-1)+1;ta.setRangeText(b.dataset.ins,ls,ls,'end');ta.focus();prev()});
+  document.querySelectorAll('[data-wrap]').forEach(b=>b.onclick=()=>{const w=b.dataset.wrap,s=ta.selectionStart,e=ta.selectionEnd;ta.setRangeText(w+(ta.value.slice(s,e)||'text')+w,s,e,'end');ta.focus();prev()});
+  document.querySelector('[data-tbl]').onclick=()=>ins('\n| Stĺpec 1 | Stĺpec 2 | Stĺpec 3 |\n|---|---|---|\n|  |  |  |\n|  |  |  |\n');
+  const addImg=async file=>{$('#sv').textContent='Nahrávam obrázok…';try{const iid=await uploadImg(file);ins(`\n![${(file.name||'obrázok').replace(/\.[^.]+$/,'')}](od:${iid})\n`);$('#sv').textContent=''}catch(e){$('#sv').textContent='';toast('Obrázok sa nepodarilo nahrať')}};
+  $('#img').onclick=()=>$('#imgf').click();$('#imgf').onchange=e=>{const fl=e.target.files[0];if(fl)addImg(fl);e.target.value=''};
+  ta.addEventListener('paste',e=>{const it=[...(e.clipboardData||{}).items||[]].find(x=>x.type.startsWith('image/'));if(it){e.preventDefault();addImg(it.getAsFile())}});
+  ta.addEventListener('drop',e=>{const fl=[...(e.dataTransfer||{}).files||[]].find(x=>x.type.startsWith('image/'));if(fl){e.preventDefault();addImg(fl)}});
+  $('#cancel').onclick=()=>location.hash=id?'#a/'+id:'#';
+  if(id)$('#del').onclick=async()=>{if(!confirm('Naozaj zmazať tento článok?'))return;delete W.articles[id];W.del[id]=Date.now();await save(id);location.hash='#'};
+  f.onsubmit=async ev=>{ev.preventDefault();const d=new FormData(f);const nid=id||('w_'+Date.now().toString(36)+Math.random().toString(36).slice(2,6));
+    W.articles[nid]={title:(d.get('title')||'').trim()||'Bez názvu',cat:d.get('cat'),body:ta.value,public:!!d.get('public'),created:(a&&a.created)||Date.now(),updated:Date.now()};delete W.del[nid];
+    $('#sv').textContent='Ukladám…';if(await save(nid))location.hash='#a/'+nid;else $('#sv').textContent=''}}
+async function save(id){const st=$('#st');try{if(st)st.textContent='Ukladám…';await push(id);if(st)st.textContent='Uložené v OneDrive';toast('Uložené');return true}catch(e){console.error(e);if(st)st.textContent='Neuložené!';toast('Uloženie zlyhalo – skús znova');return false}}
+function route(){const h=location.hash.slice(1);const [v,a]=h.split('/');S.id=null;
+  if(v==='a'){S.id=a;vArt(a)}else if(v==='k')vCat(a);else if(v==='novy')vEdit(null,a);else if(v==='upravit'){S.id=a;vEdit(a)}else vHome();
+  drawSide();window.scrollTo(0,0)}
+window.addEventListener('hashchange',()=>{if(document.body.classList.contains('on'))route()});
+window.addEventListener('beforeunload',e=>{const f=$('#f');if(f&&$('#body')&&location.hash.match(/^#(novy|upravit)/)){e.preventDefault();e.returnValue=''}});
+
+// ---------- štart ----------
+function gate(msg){$('#gate').innerHTML=`${brand('#1F2328')}<p>Pripravujeme.</p>${msg?`<p style="color:#B42318;font-size:14px">${esc(msg)}</p>`:''}<button class="lnk" id="login">Prihlásenie</button>`;$('#login').onclick=()=>msal.loginRedirect({scopes:SCOPES,prompt:'select_account'})}
+(async()=>{
+  msal=new window.msal.PublicClientApplication({auth:{clientId:CFG.clientId,authority:'https://login.microsoftonline.com/'+CFG.tenantId,redirectUri:location.origin+'/'},cache:{cacheLocation:'localStorage'}});
+  await msal.initialize();let err='';
+  try{const r=await msal.handleRedirectPromise();if(r&&r.account)account=r.account}catch(e){err='Prihlásenie zlyhalo.'}
+  account=account||msal.getAllAccounts()[0];
+  if(!account){gate(err);return}
+  try{await findBase();W=await pull()}catch(e){console.error(e);gate('Nepodarilo sa načítať wiki z OneDrive.');return}
+  document.body.classList.add('on');route();
+  setInterval(async()=>{if(document.hidden||location.hash.match(/^#(novy|upravit)/))return;try{const m=await g(FILE()+'?$select=eTag');if(m.ok){const e=(await m.json()).eTag;if(e!==etag){W=await pull();route()}}}catch(e){}},30000);
+})();
+</script>
+</body>
+</html>
