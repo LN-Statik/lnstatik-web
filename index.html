@@ -72,7 +72,34 @@ label.l{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:60
 .empty{color:var(--ink3);background:#fff;border:1px dashed var(--line);border-radius:12px;padding:26px;text-align:center}
 #toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:9px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9}#toast.on{opacity:1}
 .menu{display:none}
-@media(max-width:860px){#app{grid-template-columns:1fr}aside{position:fixed;inset:0 25% 0 0;z-index:5;transform:translateX(-105%);transition:transform .2s;height:100%}body.nav aside{transform:none}
+/* štruktúra */
+.who{display:flex;flex-wrap:wrap;gap:4px}.who button{background:#2B3036;border:0;color:#C9CED3;font-size:12px;padding:3px 9px;border-radius:999px}.who button.on{background:#fff;color:var(--ink)}
+aside nav{display:flex;flex-direction:column}aside .sh{display:flex;justify-content:space-between;color:#fff;text-decoration:none;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:14px 6px 6px;border-radius:6px}aside .sh small{color:#8A9199;letter-spacing:0;font-weight:400}aside .sh.on{color:#9CC3EC}
+aside ul.flat{list-style:none;margin:0 0 4px;padding:0}aside ul.flat a{display:block;color:#C9CED3;text-decoration:none;padding:4px 8px;border-radius:6px;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}aside ul.flat a:hover{background:#2B3036;color:#fff}aside ul.flat a.on{background:#fff;color:var(--ink)}
+.home .eyb{font-size:12px;letter-spacing:.22em;color:var(--ink3);margin:0 0 6px}
+.pil{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}.pc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:6px}.pc:hover{border-color:var(--ink3)}
+.pc i{font-style:normal;font-size:12px;color:var(--ink3);font-family:ui-monospace,Menlo,monospace}.pc b{font-size:20px}.pc span{color:var(--ink2);font-size:14px;line-height:1.5}.pc em{font-style:normal;margin-top:auto;padding-top:8px;font-size:13px;color:var(--accent);font-weight:600}
+.card .num{font-family:ui-monospace,Menlo,monospace;color:var(--ink3);font-size:12px}.card .cnt{color:var(--accent)!important;font-weight:600;font-size:13px!important;margin-top:auto}
+.dg{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}.dc .th{aspect-ratio:4/3;background:var(--paper);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:4px}.dc .th img{width:100%;height:100%;object-fit:cover}.dc .th span{font-size:12px}
+.row{grid-template-columns:2fr 1.2fr 1.2fr auto}.row2{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center;margin:-2px 0 14px}.row2 .chk{padding:0}.row2 .lbl{font-size:13px;font-weight:600;color:var(--ink2)}
+dialog{border:1px solid var(--line);border-radius:12px;padding:18px;width:min(460px,92vw)}dialog form{display:flex;flex-direction:column;gap:10px}#dlr{display:flex;flex-direction:column;max-height:50vh;overflow:auto}.dli{text-align:left;background:none;border:0;padding:8px 6px;border-bottom:1px solid var(--line2)}.dli:hover{background:var(--paper)}.dli small{color:var(--ink3)}
+/* nástroje */
+.tool h1{font-size:30px;margin:0 0 6px;letter-spacing:-.02em}.tool .lead{color:var(--ink2);margin:0 0 22px}
+.tl{display:grid;grid-template-columns:minmax(280px,380px) 1fr;gap:20px;align-items:start}
+.tin{background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px 18px 16px;display:flex;flex-direction:column;gap:4px}
+.tin fieldset{border:0;padding:0;margin:10px 0 0;display:flex;flex-direction:column;gap:10px}.tin legend{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--ink3);margin-bottom:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.iu{position:relative;display:block}.iu input{padding-right:52px}.iu i{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-style:normal;font-size:12.5px;color:var(--ink3)}
+.tin .chk{padding:0;font-weight:500}.hint{font-size:12.5px;color:var(--ink3);margin:0;line-height:1.45}.tin details{margin-top:12px;font-size:14px}.tin summary{cursor:pointer;color:var(--ink2);font-weight:600;margin-bottom:10px}
+.tout{display:flex;flex-direction:column;gap:10px}.verd{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-radius:12px;font-size:15px}.verd b{font-size:20px}.verd.ok{background:#E7F4EC;color:#1E6B43}.verd.no{background:#FDECEA;color:#B42318}
+.ub{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px}.ubh{display:flex;justify-content:space-between;font-size:15px}.ubh span{font-weight:700;font-variant-numeric:tabular-nums}.ub.no .ubh span{color:#B42318}
+.ubt{height:7px;background:var(--line2);border-radius:9px;margin:7px 0 6px;overflow:hidden}.ubt i{display:block;height:100%;background:#2E7D4F;border-radius:9px}.ub.no .ubt i{background:#B42318}.ub small{color:var(--ink2);font-size:13px}
+.steps{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 18px;font-size:14.5px}.steps summary{cursor:pointer;font-weight:700}.steps h3{font-size:15px;margin:16px 0 4px}.steps p{margin:0 0 6px}
+.steps table,.tw table{border-collapse:collapse;width:100%;font-size:13.5px;margin:6px 0}.steps th,.steps td,.tw th,.tw td{border:1px solid var(--line);padding:5px 8px;text-align:left;font-variant-numeric:tabular-nums}.steps th,.tw th{background:var(--paper)}.tw{overflow-x:auto;background:#fff;border-radius:10px}
+.pfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--ink3);font-size:12.5px;flex-wrap:wrap}
+main{min-width:0}.tl>*{min-width:0}.steps{overflow-x:auto}
+@media(max-width:1000px){.tl{grid-template-columns:minmax(0,1fr)}}
+@media print{aside,.top,.tin,.pfoot button,.menu{display:none!important}#app{display:block!important}main{padding:0}.tool .tl{display:block}.steps{border:0}.pfoot{margin-top:14px}}
+@media(max-width:860px){.row{grid-template-columns:1fr 1fr}.row label:first-child{grid-column:1/-1}#app{grid-template-columns:1fr}aside{position:fixed;inset:0 25% 0 0;z-index:5;transform:translateX(-105%);transition:transform .2s;height:100%}body.nav aside{transform:none}
  main{padding:16px 14px 60px}.menu{display:inline-flex}article.doc{padding:22px 18px}.ed{grid-template-columns:1fr}.row{grid-template-columns:1fr}.ed .pv{max-height:none}}
 </style>
 </head>
@@ -86,8 +113,6 @@ label.l{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:60
 <script>
 const LOGO=(ink)=>`<svg viewBox="15.7 0 59.8 40" height="26" aria-hidden="true" style="display:block;overflow:visible"><defs><clipPath id="lc"><path d="M-10 -10 H200 V50 H-10 Z M53 44 L40.8 25 L200 25 L200 50 Z" clip-rule="evenodd"/></clipPath></defs><path clip-path="url(#lc)" d="M19.7 0 V28 Q19.7 36 27.7 36 H60" fill="none" stroke="#8B929B" stroke-width="8"/><path d="M35.5 28 V11 Q35.5 4 42 4 Q45 4 47 7 L64.5 32.5 Q67 36 70 36 Q71.5 36 71.5 33 V0" fill="none" stroke="${ink}" stroke-width="8" stroke-linejoin="round"/></svg>`;
 const brand=ink=>`<a class="brand" href="#" aria-label="LN Statik – úvod">${LOGO(ink)}<span>· STATIK</span></a>`;
-const CATS=[['murivo','Murivo'],['beton','Betón'],['ocel','Oceľ'],['drevo','Drevo'],['zaklady','Základy a geotechnika'],['zatazenia','Zaťaženia'],['normy','Normy a literatúra'],['pomocky','Pomôcky a tabuľky'],['ine','Iné']];
-const catName=k=>(CATS.find(c=>c[0]===k)||[,k])[1];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const toast=t=>{const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2600)};
@@ -120,67 +145,254 @@ async function uploadImg(file){const name=Date.now().toString(36)+'_'+(file.name
   const r=await g(`/me/drive/root:/${enc(base+'/obrazky/'+name)}:/content`,{method:'PUT',headers:{'Content-Type':blob.type||'image/png'},body:blob});if(!r.ok)throw new Error('upload '+r.status);return (await r.json()).id}
 async function shrink(f){const img=await createImageBitmap(f);const k=Math.min(1,1800/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);return await new Promise(r=>c.toBlob(r,'image/jpeg',0.82))}
 
+// ---------- výpočty: drevo podľa STN EN 1995-1-1 (odporúčané hodnoty) ----------
+const MAT={
+ C16:{n:'C16',t:'r',fm:16,ft0:8.5,fc0:17,fv:3.2,E:8000,E05:5400,G:500,rk:310,rm:370},
+ C20:{n:'C20',t:'r',fm:20,ft0:11.5,fc0:19,fv:3.6,E:9500,E05:6400,G:590,rk:330,rm:400},
+ C24:{n:'C24',t:'r',fm:24,ft0:14.5,fc0:21,fv:4.0,E:11000,E05:7400,G:690,rk:350,rm:420},
+ C30:{n:'C30',t:'r',fm:30,ft0:19,fc0:24,fv:4.0,E:12000,E05:8000,G:750,rk:380,rm:460},
+ GL24h:{n:'GL24h',t:'l',fm:24,ft0:19.2,fc0:24,fv:3.5,E:11500,E05:9600,G:650,rk:385,rm:420},
+ GL28h:{n:'GL28h',t:'l',fm:28,ft0:22.3,fc0:28,fv:3.5,E:12600,E05:10500,G:650,rk:425,rm:460},
+ GL32h:{n:'GL32h',t:'l',fm:32,ft0:25.6,fc0:32,fv:3.5,E:14200,E05:11800,G:650,rk:440,rm:490}};
+const DUR=[['perm','stále'],['long','dlhodobé'],['med','strednodobé'],['short','krátkodobé'],['inst','okamžité']];
+const KMOD={1:{perm:.6,long:.7,med:.8,short:.9,inst:1.1},2:{perm:.6,long:.7,med:.8,short:.9,inst:1.1},3:{perm:.5,long:.55,med:.65,short:.7,inst:.9}};
+const KDEF={1:.6,2:.8,3:2.0};
+const GM={r:1.3,l:1.25};
+function tramCalc(p){
+ const m=MAT[p.mat];const L=p.L*1000,b=p.b,h=p.h;const sc=p.sc;
+ const A=b*h,W=b*h*h/6,I=b*h**3/12;
+ const gs=p.self?m.rm*9.81/1e3*(b/1000)*(h/1000):0;const G=p.gk+gs,Q=p.qk;
+ const gM=GM[m.t];const kcr=0.67;
+ const kh=m.t==='r'?(h<150?Math.min((150/h)**0.2,1.3):1):(h<600?Math.min((600/h)**0.1,1.1):1);
+ const combos=[{n:'Len stále zaťaženie',Ed:p.gG*G,km:KMOD[sc].perm,dur:'perm'}];
+ if(Q>0)combos.push({n:'Stále + premenné',Ed:p.gG*G+p.gQ*Q,km:KMOD[sc][p.dur],dur:p.dur});
+ for(const c of combos){c.M=c.Ed*p.L**2/8;c.V=c.Ed*p.L/2;c.sig=c.M*1e6/W;c.tau=1.5*c.V*1e3/(kcr*b*h);
+  c.fmd=c.km*kh*m.fm/gM;c.fvd=c.km*m.fv/gM;c.um=c.sig/c.fmd;c.uv=c.tau/c.fvd}
+ const cm=combos.reduce((a,c)=>c.um>a.um?c:a),cv=combos.reduce((a,c)=>c.uv>a.uv?c:a);
+ const w=q=>5*q*L**4/(384*m.E*I);const wG=w(G),wQ=w(Q);const kd=KDEF[sc];
+ const winst=wG+wQ,wfin=wG*(1+kd)+wQ*(1+p.psi2*kd);const lim1=L/p.l1,lim2=L/p.l2;
+ const r={m,L,b,h,A,W,I,gs,G,Q,gM,kcr,kh,kd,combos,cm,cv,wG,wQ,winst,wfin,lim1,lim2,ui:winst/lim1,uf:wfin/lim2};
+ r.u=Math.max(cm.um,cv.uv,r.ui,r.uf);return r}
+// ---------- štruktúra ----------
+const CH=[['material','Materiál','Triedy pevnosti, vlhkosť, k_mod, k_def'],['prvky','Prvky','Ohyb, šmyk, tlak, vzper, klopenie, priehyb'],['spoje','Spoje','Kolíkové spoje, skrutky, klince, tesárske spoje'],['krovy','Krovy a strechy','Krokvy, väznice, kleštiny, väzníky'],['stropy','Stropy','Trámové stropy, priehyb, kmitanie'],['steny','Steny a drevostavby','Rámové a panelové konštrukcie, CLT'],['vlhkost','Vlhkosť a trvanlivosť','Ochrana dreva, triedy použitia, poruchy'],['poziar','Požiar','Zuhoľnatenie, redukovaný prierez'],['zatazenia','Zaťaženia','Sneh, vietor a úžitkové zaťaženie pre drevo'],['existujuce','Existujúce konštrukcie','Posudzovanie starého dreva, sanácia, zosilnenie'],['normy','Normy a literatúra','Prehľad noriem a zdrojov']];
+const SEC={p:['Príručka','Karta príručky'],d:['Detaily','Detail'],n:['Riešim…','Návod „Riešim…“']};
+const WHO=[['stu','Študent'],['stat','Statik'],['arch','Architekt'],['stav','Stavebník']];
+const TOOLS=[{id:'tram',n:'Drevený trám – prostý nosník',d:'Ohyb, šmyk a priehyb pri rovnomernom zaťažení',ch:'prvky'},{id:'triedy',n:'Triedy dreva a súčinitele',d:'C16–C30, GL24h–GL32h, k_mod, k_def, γ_M',ch:'material'}];
+const chName=k=>(CH.find(c=>c[0]===k)||[,'Iné'])[1];
+const TPL={
+p:`## V skratke
+Dve–tri vety: čo to je a prečo na tom záleží.
+
+## Ako to funguje
+Princíp vlastnými slovami, ideálne s obrázkom.
+
+## Ako sa to posudzuje
+Postup krok za krokom. Vzťahy a odkaz na článok normy (napr. STN EN 1995-1-1, čl. 6.1.6).
+
+## Príklad
+Zadanie → výpočet → výsledok.
+
+## Časté chyby
+- 
+
+## Súvisiace
+- `,
+d:`## Kde sa používa
+Krátko, v akej situácii sa detail rieši.
+
+## Princíp
+Obrázok detailu a popis vrstiev / prvkov.
+
+## Na čo dať pozor
+- 
+
+## Súvisiace
+- `,
+n:`## Situácia
+Čo človek rieši, vlastnými slovami (napr. „chcem zobytniť podkrovie“).
+
+## Krok 1 – 
+## Krok 2 – 
+## Krok 3 – 
+
+## Kedy volať statika
+- 
+
+## Súvisiace
+- `};
+// staré články (pred prestavbou) → príručka
+function norm(a){if(!a.sec){a.sec='p';if(!CH.some(c=>c[0]===a.cat))a.cat=a.cat==='normy'?'normy':a.cat==='zatazenia'?'zatazenia':'material'}a.who=a.who||[];return a}
+
 // ---------- vykreslenie ----------
 marked.setOptions({gfm:true,breaks:false});
 function md(text){return marked.parse(String(text||''))}
 async function fixImgs(root){for(const im of root.querySelectorAll('img[src^="od:"]')){const id=im.getAttribute('src').slice(3);im.removeAttribute('src');im.alt=im.alt||'obrázok';try{im.src=await imgUrl(id)}catch(e){im.alt='Obrázok sa nepodarilo načítať'}}}
-const S={view:'home',id:null,q:'',open:{}};
-const list=()=>Object.entries(W.articles).map(([id,a])=>({id,...a}));
-function drawSide(){const q=S.q.trim().toLowerCase();const all=list().filter(a=>!q||(a.title+' '+a.body).toLowerCase().includes(q)).sort((a,b)=>a.title.localeCompare(b.title,'sk'));
+const S={id:null,q:'',who:'',open:{},sec:null};
+const list=()=>Object.entries(W.articles).map(([id,a])=>norm({id,...a}));
+const vis=a=>!S.who||!a.who.length||a.who.includes(S.who);
+const byOrd=(a,b)=>((a.order||999)-(b.order||999))||a.title.localeCompare(b.title,'sk');
+const plural=(n,a,b,c)=>n===1?a:n>1&&n<5?b:c;
+function drawSide(){const q=S.q.trim().toLowerCase();const all=list().filter(vis).filter(a=>!q||(a.title+' '+a.body).toLowerCase().includes(q));
+  const tl=TOOLS.filter(t=>!q||(t.n+' '+t.d).toLowerCase().includes(q));
+  const P=all.filter(a=>a.sec==='p'),D=all.filter(a=>a.sec==='d').sort(byOrd),N=all.filter(a=>a.sec==='n').sort(byOrd);
+  const li=a=>`<li><a href="#a/${a.id}" class="${a.id===S.id?'on':''}">${esc(a.title)}${a.public?'<span class="pub">●</span>':''}</a></li>`;
   $('#side').innerHTML=`${brand('#F4F5F6')}
-  <input id="q" type="search" placeholder="Hľadať v článkoch…" aria-label="Hľadať" value="${esc(S.q)}">
-  <button class="btn p" id="new" style="justify-content:center">+ Nový článok</button>
-  <nav aria-label="Kategórie">${CATS.map(([k,n])=>{const it=all.filter(a=>a.cat===k);const open=q?it.length>0:(S.open[k]??(it.some(a=>a.id===S.id)));
-    return `<div class="cat"><button data-cat="${k}" aria-expanded="${open}">${esc(n)} <small>${it.length||''}</small></button>${open&&it.length?`<ul>${it.map(a=>`<li><a href="#a/${a.id}" class="${a.id===S.id?'on':''}">${esc(a.title)}${a.public?'<span class="pub">●</span>':''}</a></li>`).join('')}</ul>`:''}</div>`}).join('')}</nav>
+  <input id="q" type="search" placeholder="Hľadať…" aria-label="Hľadať" value="${esc(S.q)}">
+  <div class="who" role="group" aria-label="Pre koho">${[['','Všetci'],...WHO].map(([k,n])=>`<button data-who="${k}" class="${S.who===k?'on':''}">${n}</button>`).join('')}</div>
+  <button class="btn p" id="new" style="justify-content:center">+ Nová karta</button>
+  <nav aria-label="Obsah">
+   <a class="sh ${S.sec==='p'?'on':''}" href="#p">Príručka</a>
+   ${CH.map(([k,n])=>{const it=P.filter(a=>a.cat===k).sort(byOrd);const open=q?it.length>0:(S.open[k]??it.some(a=>a.id===S.id));if(q&&!it.length)return '';
+    return `<div class="cat"><button data-cat="${k}" aria-expanded="${open}">${esc(n)} <small>${it.length||''}</small></button>${open&&it.length?`<ul>${it.map(li).join('')}</ul>`:''}</div>`}).join('')}
+   <a class="sh ${S.sec==='t'?'on':''}" href="#t">Nástroje <small>${tl.length}</small></a>
+   <ul class="flat">${tl.map(t=>`<li><a href="#t/${t.id}" class="${S.id==='t:'+t.id?'on':''}">${esc(t.n)}</a></li>`).join('')}</ul>
+   <a class="sh ${S.sec==='d'?'on':''}" href="#d">Detaily <small>${D.length||''}</small></a>
+   ${q&&D.length?`<ul class="flat">${D.map(li).join('')}</ul>`:''}
+   <a class="sh ${S.sec==='n'?'on':''}" href="#n">Riešim… <small>${N.length||''}</small></a>
+   ${N.length?`<ul class="flat">${N.map(li).join('')}</ul>`:''}
+  </nav>
   <div class="foot"><span id="st">Uložené v OneDrive</span><span>${esc(account&&account.username||'')}</span><button id="out">Odhlásiť sa</button></div>`;
   const qi=$('#q');qi.oninput=()=>{S.q=qi.value;const p=qi.selectionStart;drawSide();const n=$('#q');n.focus();n.setSelectionRange(p,p)};
-  $('#new').onclick=()=>{location.hash='#novy'};$('#out').onclick=()=>msal.logoutRedirect({account});
+  $('#new').onclick=()=>{location.hash='#novy/'+(S.sec==='d'?'d':S.sec==='n'?'n':'p')};$('#out').onclick=()=>msal.logoutRedirect({account});
+  document.querySelectorAll('[data-who]').forEach(b=>b.onclick=()=>{S.who=b.dataset.who;route()});
   document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{const k=b.dataset.cat;S.open[k]=b.getAttribute('aria-expanded')!=='true';drawSide()});
-  document.querySelectorAll('aside a[href^="#a/"]').forEach(a=>a.onclick=()=>document.body.classList.remove('nav'))}
+  document.querySelectorAll('aside nav a').forEach(a=>a.addEventListener('click',()=>document.body.classList.remove('nav')))}
 const topbar=crumb=>`<div class="top"><div style="display:flex;gap:10px;align-items:center"><button class="btn menu" onclick="document.body.classList.toggle('nav')" aria-label="Menu">☰</button><span class="crumb">${crumb}</span></div><div id="tb" style="display:flex;gap:8px"></div></div>`;
-function vHome(){const all=list();const rec=all.sort((a,b)=>(b.updated||0)-(a.updated||0)).slice(0,8);
-  $('#main').innerHTML=topbar('Wiki')+`<div class="home"><h1>Moja statická wiki</h1><p class="lead">Poznámky, tabuľky a pomôcky rozdelené podľa materiálov. Zatiaľ je to súkromné – vidíš to len ty. Článok označený <span class="tag pub">verejný</span> sa neskôr zobrazí aj ostatným.</p>
-  <div class="grid">${CATS.map(([k,n])=>{const c=all.filter(a=>a.cat===k).length;return `<a class="card" href="#k/${k}"><b>${esc(n)}</b><span>${c?c+' '+(c===1?'článok':c<5?'články':'článkov'):'zatiaľ prázdne'}</span></a>`}).join('')}</div>
-  <div class="recent"><h2>Naposledy upravené</h2>${rec.length?rec.map(a=>`<a href="#a/${a.id}"><b>${esc(a.title)}</b><span>${esc(catName(a.cat))} · ${fdt(a.updated)}</span></a>`).join(''):'<div class="empty">Zatiaľ žiadne články. Klikni na „+ Nový článok“.</div>'}</div></div>`}
-function vCat(k){const it=list().filter(a=>a.cat===k).sort((a,b)=>a.title.localeCompare(b.title,'sk'));
-  $('#main').innerHTML=topbar(`<a href="#">Wiki</a> / ${esc(catName(k))}`)+`<div class="home"><h1>${esc(catName(k))}</h1><p class="lead">${it.length} ${it.length===1?'článok':it.length>1&&it.length<5?'články':'článkov'}</p>
-  ${it.length?`<div class="recent">${it.map(a=>`<a href="#a/${a.id}"><b>${esc(a.title)} ${a.public?'<span class="tag pub">verejný</span>':''}</b><span>${fdt(a.updated)}</span></a>`).join('')}</div>`:`<div class="empty">V tejto kategórii zatiaľ nič nie je. <a href="#novy/${k}">Napísať prvý článok</a></div>`}</div>`}
-function vArt(id){const a=W.articles[id];if(!a){location.hash='#';return}
-  $('#main').innerHTML=topbar(`<a href="#">Wiki</a> / <a href="#k/${a.cat}">${esc(catName(a.cat))}</a>`)+`<article class="doc"><h1>${esc(a.title)}</h1><div class="meta"><span>${esc(catName(a.cat))}</span><span>Upravené ${fdt(a.updated)}</span><span class="tag ${a.public?'pub':''}">${a.public?'verejný':'súkromný'}</span></div><div class="md" id="md">${md(a.body)}</div></article>`;
+const whoTags=a=>a.who.map(k=>`<span class="tag">${(WHO.find(w=>w[0]===k)||[,k])[1]}</span>`).join(' ');
+function vHome(){const all=list().filter(vis);const c=s=>all.filter(a=>a.sec===s).length;const rec=[...all].sort((a,b)=>(b.updated||0)-(a.updated||0)).slice(0,6);
+  $('#main').innerHTML=topbar('Úvod')+`<div class="home"><p class="eyb">LN · STATIK</p><h1>Drevené konštrukcie</h1><p class="lead">Príručka, nástroje a detaily na jednom mieste. Každá vec má svoje pevné miesto – nový obsah sa zaraďuje do kapitol, nie navrch. Zatiaľ súkromné; čo označíš <span class="tag pub">verejné</span>, pôjde neskôr von.</p>
+  <div class="pil">
+   <a class="pc" href="#p"><i>01</i><b>Príručka</b><span>Karty tém v ${CH.length} kapitolách – od materiálu po existujúce konštrukcie.</span><em>${c('p')} ${plural(c('p'),'karta','karty','kariet')}</em></a>
+   <a class="pc" href="#t"><i>02</i><b>Nástroje</b><span>Kalkulačky a tabuľky s vypísaným postupom výpočtu.</span><em>${TOOLS.length} ${plural(TOOLS.length,'nástroj','nástroje','nástrojov')}</em></a>
+   <a class="pc" href="#d"><i>03</i><b>Detaily</b><span>Katalóg konštrukčných detailov s obrázkom a tým, na čo dať pozor.</span><em>${c('d')} ${plural(c('d'),'detail','detaily','detailov')}</em></a>
+   <a class="pc" href="#n"><i>04</i><b>Riešim…</b><span>Krátke cesty pre konkrétne situácie, napr. „chcem zobytniť podkrovie“.</span><em>${c('n')} ${plural(c('n'),'návod','návody','návodov')}</em></a>
+  </div>
+  <div class="recent"><h2>Naposledy upravené</h2>${rec.length?rec.map(a=>`<a href="#a/${a.id}"><b>${esc(a.title)}</b><span>${SEC[a.sec][0]}${a.sec==='p'?' · '+esc(chName(a.cat)):''} · ${fdt(a.updated)}</span></a>`).join(''):'<div class="empty">Zatiaľ nič. Začni kartou v príručke – klikni na „+ Nová karta“.</div>'}</div></div>`}
+function vPrir(){const all=list().filter(vis).filter(a=>a.sec==='p');
+  $('#main').innerHTML=topbar(`<a href="#">Úvod</a> / Príručka`)+`<div class="home"><h1>Príručka</h1><p class="lead">Kapitoly sú pevné; karty sa do nich postupne dopĺňajú.</p>
+  <div class="grid">${CH.map(([k,n,d],i)=>{const it=all.filter(a=>a.cat===k).length;return `<a class="card" href="#k/${k}"><small class="num">${String(i+1).padStart(2,'0')}</small><b>${esc(n)}</b><span>${esc(d)}</span><span class="cnt">${it?it+' '+plural(it,'karta','karty','kariet'):'zatiaľ prázdne'}</span></a>`}).join('')}</div></div>`}
+function vCh(k){const it=list().filter(vis).filter(a=>a.sec==='p'&&a.cat===k).sort(byOrd);const ch=CH.find(c=>c[0]===k)||[k,k,''];const tl=TOOLS.filter(t=>t.ch===k);
+  $('#main').innerHTML=topbar(`<a href="#">Úvod</a> / <a href="#p">Príručka</a> / ${esc(ch[1])}`)+`<div class="home"><h1>${esc(ch[1])}</h1><p class="lead">${esc(ch[2])}</p>
+  ${it.length?`<div class="recent">${it.map(a=>`<a href="#a/${a.id}"><b>${esc(a.title)} ${a.public?'<span class="tag pub">verejné</span>':''}</b><span>${fdt(a.updated)}</span></a>`).join('')}</div>`:`<div class="empty">V tejto kapitole zatiaľ nie je žiadna karta. <a href="#novy/p/${k}">Napísať prvú</a></div>`}
+  ${tl.length?`<div class="recent"><h2>Nástroje k tejto kapitole</h2>${tl.map(t=>`<a href="#t/${t.id}"><b>${esc(t.n)}</b><span>${esc(t.d)}</span></a>`).join('')}</div>`:''}
+  <p style="margin-top:18px"><a class="btn" href="#novy/p/${k}">+ Karta do kapitoly ${esc(ch[1])}</a></p></div>`}
+function firstImg(b){const m=String(b||'').match(/!\[[^\]]*\]\(od:([^)\s]+)\)/);return m&&m[1]}
+function vDet(){const it=list().filter(vis).filter(a=>a.sec==='d').sort(byOrd);
+  $('#main').innerHTML=topbar(`<a href="#">Úvod</a> / Detaily`)+`<div class="home"><h1>Detaily</h1><p class="lead">Katalóg konštrukčných detailov. Prvý obrázok v karte sa zobrazí ako náhľad.</p>
+  ${it.length?`<div class="grid dg">${it.map(a=>{const im=firstImg(a.body);return `<a class="card dc" href="#a/${a.id}"><div class="th">${im?`<img data-od="${esc(im)}" alt="">`:'<span>bez obrázka</span>'}</div><b>${esc(a.title)}</b><span>${esc(chName(a.cat))}</span></a>`}).join('')}</div>`:`<div class="empty">Zatiaľ žiadne detaily. <a href="#novy/d">Pridať prvý detail</a></div>`}</div>`;
+  document.querySelectorAll('img[data-od]').forEach(async im=>{try{im.src=await imgUrl(im.dataset.od)}catch(e){}})}
+function vNav(){const it=list().filter(vis).filter(a=>a.sec==='n').sort(byOrd);
+  $('#main').innerHTML=topbar(`<a href="#">Úvod</a> / Riešim…`)+`<div class="home"><h1>Riešim…</h1><p class="lead">Krátke cesty krok za krokom pre konkrétnu situáciu. Návod nič neopakuje – len poprepája karty, nástroje a detaily.</p>
+  ${it.length?`<div class="recent">${it.map(a=>`<a href="#a/${a.id}"><b>${esc(a.title)}</b><span>${fdt(a.updated)}</span></a>`).join('')}</div>`:`<div class="empty">Zatiaľ žiadne návody. <a href="#novy/n">Napísať prvý</a> – napr. „Chcem zobytniť podkrovie“.</div>`}</div>`}
+function vArt(id){const a=W.articles[id]&&norm({id,...W.articles[id]});if(!a){location.hash='#';return}
+  const cr=a.sec==='p'?`<a href="#p">Príručka</a> / <a href="#k/${a.cat}">${esc(chName(a.cat))}</a>`:a.sec==='d'?`<a href="#d">Detaily</a>`:`<a href="#n">Riešim…</a>`;
+  $('#main').innerHTML=topbar(`<a href="#">Úvod</a> / ${cr}`)+`<article class="doc"><h1>${esc(a.title)}</h1><div class="meta"><span>${SEC[a.sec][1]}</span>${a.sec!=='n'?`<span>${esc(chName(a.cat))}</span>`:''}<span>Revízia ${fdt(a.updated)}</span><span class="tag ${a.public?'pub':''}">${a.public?'verejné':'súkromné'}</span>${whoTags(a)}</div><div class="md" id="md">${md(a.body)}</div></article>`;
   $('#tb').innerHTML=`<button class="btn" id="ed">Upraviť</button>`;$('#ed').onclick=()=>location.hash='#upravit/'+id;fixImgs($('#md'))}
-function vEdit(id,cat){const a=id?W.articles[id]:{title:'',cat:cat||'murivo',body:'',public:false};if(id&&!a){location.hash='#';return}
-  $('#main').innerHTML=topbar(id?`Úprava: ${esc(a.title)}`:'Nový článok')+`<form id="f">
-  <div class="row"><label class="l">Názov<input name="title" required value="${esc(a.title)}" placeholder="napr. Pevnosť muriva v tlaku"></label>
-  <label class="l">Kategória<select name="cat">${CATS.map(([k,n])=>`<option value="${k}" ${k===a.cat?'selected':''}>${esc(n)}</option>`).join('')}</select></label>
-  <label class="chk"><input type="checkbox" name="public" ${a.public?'checked':''}> Verejný</label></div>
+function vEdit(id,sec,cat){const a0=id?W.articles[id]:null;if(id&&!a0){location.hash='#';return}
+  const a=a0?norm({...a0}):{title:'',sec:SEC[sec]?sec:'p',cat:cat||'material',body:TPL[SEC[sec]?sec:'p'],public:false,who:[],order:''};
+  $('#main').innerHTML=topbar(id?`Úprava: ${esc(a.title)}`:'Nová karta')+`<form id="f">
+  <div class="row"><label class="l">Názov<input name="title" required value="${esc(a.title)}" placeholder="napr. Krokva – posúdenie na ohyb"></label>
+  <label class="l">Typ<select name="sec" id="sec">${Object.entries(SEC).map(([k,v])=>`<option value="${k}" ${k===a.sec?'selected':''}>${v[1]}</option>`).join('')}</select></label>
+  <label class="l" id="chl">Kapitola<select name="cat">${CH.map(([k,n])=>`<option value="${k}" ${k===a.cat?'selected':''}>${esc(n)}</option>`).join('')}</select></label>
+  <label class="l" style="max-width:110px">Poradie<input name="order" type="number" min="1" value="${esc(a.order||'')}" placeholder="—"></label></div>
+  <div class="row2"><span class="lbl">Pre koho:</span>${WHO.map(([k,n])=>`<label class="chk"><input type="checkbox" name="who" value="${k}" ${a.who.includes(k)?'checked':''}> ${n}</label>`).join('')}<span style="flex:1"></span><label class="chk"><input type="checkbox" name="public" ${a.public?'checked':''}> Verejné</label></div>
   <div class="tools"><button type="button" class="btn" data-ins="## ">Nadpis</button><button type="button" class="btn" data-wrap="**">Tučné</button><button type="button" class="btn" data-wrap="*">Kurzíva</button><button type="button" class="btn" data-ins="- ">Odrážka</button>
-   <button type="button" class="btn" data-tbl="1">Tabuľka</button><button type="button" class="btn" data-ins="> ">Poznámka</button><button type="button" class="btn" id="img">Obrázok</button><input type="file" id="imgf" accept="image/*" hidden></div>
-  <div class="ed"><textarea name="body" id="body" aria-label="Text článku" placeholder="Píš sem… Obrázok môžeš aj vložiť (Ctrl+V) alebo pretiahnuť.">${esc(a.body)}</textarea><div class="pv md" id="pv"></div></div>
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:10px;flex-wrap:wrap"><div>${id?'<button type="button" class="btn bad" id="del">Zmazať článok</button>':''}</div>
-  <div style="display:flex;gap:8px;align-items:center"><span class="status" id="sv"></span><button type="button" class="btn q" id="cancel">Zrušiť</button><button class="btn p">Uložiť</button></div></div></form>`;
+   <button type="button" class="btn" data-tbl="1">Tabuľka</button><button type="button" class="btn" data-ins="> ">Poznámka</button><button type="button" class="btn" id="img">Obrázok</button><button type="button" class="btn" id="lnk">Odkaz na kartu/nástroj</button><input type="file" id="imgf" accept="image/*" hidden></div>
+  <div class="ed"><textarea name="body" id="body" aria-label="Text karty" placeholder="Píš sem… Obrázok môžeš aj vložiť (Ctrl+V) alebo pretiahnuť.">${esc(a.body)}</textarea><div class="pv md" id="pv"></div></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:10px;flex-wrap:wrap"><div>${id?'<button type="button" class="btn bad" id="del">Zmazať</button>':''}</div>
+  <div style="display:flex;gap:8px;align-items:center"><span class="status" id="sv"></span><button type="button" class="btn q" id="cancel">Zrušiť</button><button class="btn p">Uložiť</button></div></div></form>
+  <dialog id="dl"><form method="dialog"><b>Vložiť odkaz</b><input id="dlq" placeholder="Hľadať kartu alebo nástroj…"><div id="dlr"></div><div style="text-align:right;margin-top:8px"><button class="btn q">Zavrieť</button></div></form></dialog>`;
   const f=$('#f'),ta=$('#body');let pt;const prev=()=>{clearTimeout(pt);pt=setTimeout(()=>{$('#pv').innerHTML=md(ta.value)||'<p style="color:#868D96">Náhľad…</p>';fixImgs($('#pv'))},150)};ta.oninput=prev;prev();
+  const secSel=$('#sec');const chv=()=>{$('#chl').style.visibility=secSel.value==='n'?'hidden':'visible'};chv();
+  secSel.onchange=()=>{chv();const t=ta.value.trim();if(!t||Object.values(TPL).some(x=>x.trim()===t)){ta.value=TPL[secSel.value];prev()}};
   const ins=(t)=>{const s=ta.selectionStart,e=ta.selectionEnd;ta.setRangeText(t,s,e,'end');ta.focus();prev()};
   document.querySelectorAll('[data-ins]').forEach(b=>b.onclick=()=>{const s=ta.selectionStart;const ls=ta.value.lastIndexOf('\n',s-1)+1;ta.setRangeText(b.dataset.ins,ls,ls,'end');ta.focus();prev()});
   document.querySelectorAll('[data-wrap]').forEach(b=>b.onclick=()=>{const w=b.dataset.wrap,s=ta.selectionStart,e=ta.selectionEnd;ta.setRangeText(w+(ta.value.slice(s,e)||'text')+w,s,e,'end');ta.focus();prev()});
   document.querySelector('[data-tbl]').onclick=()=>ins('\n| Stĺpec 1 | Stĺpec 2 | Stĺpec 3 |\n|---|---|---|\n|  |  |  |\n|  |  |  |\n');
+  const dl=$('#dl');const items=()=>[...TOOLS.map(t=>({h:'#t/'+t.id,n:t.n,k:'Nástroj'})),...list().filter(x=>x.id!==id).map(x=>({h:'#a/'+x.id,n:x.title,k:SEC[x.sec][1]}))];
+  const dr=()=>{const q=$('#dlq').value.toLowerCase();$('#dlr').innerHTML=items().filter(x=>!q||x.n.toLowerCase().includes(q)).slice(0,12).map((x,i)=>`<button type="button" class="dli" data-i="${esc(x.h)}" data-n="${esc(x.n)}">${esc(x.n)} <small>${x.k}</small></button>`).join('')||'<p class="status">Nič sa nenašlo.</p>';
+    document.querySelectorAll('.dli').forEach(b=>b.onclick=()=>{dl.close();ins(`[${b.dataset.n}](${b.dataset.i})`)})};
+  $('#lnk').onclick=()=>{$('#dlq').value='';dr();dl.showModal();$('#dlq').focus()};$('#dlq').oninput=dr;
   const addImg=async file=>{$('#sv').textContent='Nahrávam obrázok…';try{const iid=await uploadImg(file);ins(`\n![${(file.name||'obrázok').replace(/\.[^.]+$/,'')}](od:${iid})\n`);$('#sv').textContent=''}catch(e){$('#sv').textContent='';toast('Obrázok sa nepodarilo nahrať')}};
   $('#img').onclick=()=>$('#imgf').click();$('#imgf').onchange=e=>{const fl=e.target.files[0];if(fl)addImg(fl);e.target.value=''};
   ta.addEventListener('paste',e=>{const it=[...(e.clipboardData||{}).items||[]].find(x=>x.type.startsWith('image/'));if(it){e.preventDefault();addImg(it.getAsFile())}});
   ta.addEventListener('drop',e=>{const fl=[...(e.dataTransfer||{}).files||[]].find(x=>x.type.startsWith('image/'));if(fl){e.preventDefault();addImg(fl)}});
   $('#cancel').onclick=()=>location.hash=id?'#a/'+id:'#';
-  if(id)$('#del').onclick=async()=>{if(!confirm('Naozaj zmazať tento článok?'))return;delete W.articles[id];W.del[id]=Date.now();await save(id);location.hash='#'};
+  if(id)$('#del').onclick=async()=>{if(!confirm('Naozaj zmazať túto kartu?'))return;delete W.articles[id];W.del[id]=Date.now();await save(id);location.hash='#'};
   f.onsubmit=async ev=>{ev.preventDefault();const d=new FormData(f);const nid=id||('w_'+Date.now().toString(36)+Math.random().toString(36).slice(2,6));
-    W.articles[nid]={title:(d.get('title')||'').trim()||'Bez názvu',cat:d.get('cat'),body:ta.value,public:!!d.get('public'),created:(a&&a.created)||Date.now(),updated:Date.now()};delete W.del[nid];
+    W.articles[nid]={title:(d.get('title')||'').trim()||'Bez názvu',sec:d.get('sec'),cat:d.get('cat'),order:+d.get('order')||'',who:d.getAll('who'),body:ta.value,public:!!d.get('public'),created:(a0&&a0.created)||Date.now(),updated:Date.now()};delete W.del[nid];
     $('#sv').textContent='Ukladám…';if(await save(nid))location.hash='#a/'+nid;else $('#sv').textContent=''}}
 async function save(id){const st=$('#st');try{if(st)st.textContent='Ukladám…';await push(id);if(st)st.textContent='Uložené v OneDrive';toast('Uložené');return true}catch(e){console.error(e);if(st)st.textContent='Neuložené!';toast('Uloženie zlyhalo – skús znova');return false}}
-function route(){const h=location.hash.slice(1);const [v,a]=h.split('/');S.id=null;
-  if(v==='a'){S.id=a;vArt(a)}else if(v==='k')vCat(a);else if(v==='novy')vEdit(null,a);else if(v==='upravit'){S.id=a;vEdit(a)}else vHome();
+
+// ---------- nástroje ----------
+const nf=(x,d=2)=>Number(x).toLocaleString('sk-SK',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pc=u=>Math.round(u*100)+' %';
+function vTools(){$('#main').innerHTML=topbar(`<a href="#">Úvod</a> / Nástroje`)+`<div class="home"><h1>Nástroje</h1><p class="lead">Každý nástroj vypíše celý postup výpočtu, aby sa dal skontrolovať. Je to pomôcka – za návrh zodpovedá projektant.</p>
+  <div class="grid">${TOOLS.map(t=>`<a class="card" href="#t/${t.id}"><b>${esc(t.n)}</b><span>${esc(t.d)}</span><span class="cnt">${esc(chName(t.ch))}</span></a>`).join('')}</div></div>`}
+const TP={L:4,b:100,h:200,mat:'C24',sc:1,gk:1,qk:1.5,self:true,dur:'med',psi2:0.3,gG:1.35,gQ:1.5,l1:300,l2:250};
+function vTram(){let p;try{p={...TP,...JSON.parse(localStorage.getItem('lns_tram')||'{}')}}catch(e){p={...TP}}
+  const num=(k,l,u,st='any')=>`<label class="l">${l}<span class="iu"><input type="number" step="${st}" name="${k}" value="${p[k]}" required><i>${u}</i></span></label>`;
+  $('#main').innerHTML=topbar(`<a href="#">Úvod</a> / <a href="#t">Nástroje</a> / Drevený trám`)+`<div class="tool"><h1>Drevený trám – prostý nosník</h1>
+  <p class="lead">Rovnomerné zaťaženie, posúdenie na ohyb, šmyk a priehyb podľa STN EN 1995-1-1. Predpoklad: tlačený okraj je zabezpečený proti klopeniu.</p>
+  <div class="tl"><form id="tf" class="tin">
+   <fieldset><legend>Geometria</legend>${num('L','Rozpätie L','m')}<div class="two">${num('b','Šírka b','mm','1')}${num('h','Výška h','mm','1')}</div></fieldset>
+   <fieldset><legend>Materiál</legend><div class="two"><label class="l">Trieda<select name="mat">${Object.keys(MAT).map(k=>`<option ${k===p.mat?'selected':''}>${k}</option>`).join('')}</select></label>
+    <label class="l">Trieda prevádzky<select name="sc">${[1,2,3].map(k=>`<option value="${k}" ${k==p.sc?'selected':''}>${k} – ${['','vnútri, vykurované','pod strechou, nevykurované','vonku, nechránené'][k]}</option>`).join('')}</select></label></div></fieldset>
+   <fieldset><legend>Zaťaženie (charakteristické)</legend><div class="two">${num('gk','Stále g_k','kN/m')}${num('qk','Premenné q_k','kN/m')}</div>
+    <label class="chk"><input type="checkbox" name="self" ${p.self?'checked':''}> Pripočítať vlastnú tiaž trámu</label>
+    <div class="two"><label class="l">Trvanie premenného<select name="dur">${DUR.filter(d=>d[0]!=='perm').map(([k,n])=>`<option value="${k}" ${k===p.dur?'selected':''}>${n}</option>`).join('')}</select></label>${num('psi2','ψ₂ premenného','–')}</div>
+    <p class="hint">Napr. úžitkové v bytoch: strednodobé, ψ₂ = 0,3. Sneh: krátkodobé, ψ₂ = 0 (over v národnej prílohe).</p></fieldset>
+   <details><summary>Súčinitele a limity priehybu</summary><div class="two">${num('gG','γ_G','–')}${num('gQ','γ_Q','–')}</div><div class="two">${num('l1','w_inst ≤ L /','–','1')}${num('l2','w_fin ≤ L /','–','1')}</div></details>
+  </form><div id="tr" class="tout"></div></div></div>`;
+  const f=$('#tf');const run=()=>{const d=new FormData(f);const q={};for(const k of Object.keys(TP)){const v=d.get(k);q[k]=k==='mat'||k==='dur'?v:k==='self'?!!v:+v}
+    try{localStorage.setItem('lns_tram',JSON.stringify(q))}catch(e){}
+    if(!(q.L>0&&q.b>0&&q.h>0)){$('#tr').innerHTML='<div class="empty">Zadaj rozmery väčšie ako nula.</div>';return}
+    $('#tr').innerHTML=tramOut(tramCalc(q),q)};
+  f.oninput=run;run()}
+function bar(n,u,det){const ok=u<=1;return `<div class="ub ${ok?'ok':'no'}"><div class="ubh"><b>${n}</b><span>${pc(u)}</span></div><div class="ubt"><i style="width:${Math.min(u,1)*100}%"></i></div><small>${det}</small></div>`}
+function tramOut(r,q){const m=r.m,ok=r.u<=1,cm=r.cm,cv=r.cv,durN=k=>(DUR.find(d=>d[0]===k)||[,k])[1];
+  return `<div class="verd ${ok?'ok':'no'}"><b>${ok?'Vyhovuje':'Nevyhovuje'}</b><span>max. využitie ${pc(r.u)}</span></div>
+  ${bar('Ohyb',cm.um,`σ<sub>m,d</sub> = ${nf(cm.sig)} MPa ≤ f<sub>m,d</sub> = ${nf(cm.fmd)} MPa`)}
+  ${bar('Šmyk',cv.uv,`τ<sub>d</sub> = ${nf(cv.tau)} MPa ≤ f<sub>v,d</sub> = ${nf(cv.fvd)} MPa`)}
+  ${bar('Priehyb okamžitý',r.ui,`w<sub>inst</sub> = ${nf(r.winst,1)} mm ≤ L/${q.l1} = ${nf(r.lim1,1)} mm`)}
+  ${bar('Priehyb konečný',r.uf,`w<sub>fin</sub> = ${nf(r.wfin,1)} mm ≤ L/${q.l2} = ${nf(r.lim2,1)} mm`)}
+  <details class="steps" open><summary>Postup výpočtu</summary>
+  <h3>1. Prierez a materiál</h3><p>A = b·h = ${nf(r.A,0)} mm², W = b·h²/6 = ${nf(r.W/1e3,1)}·10³ mm³, I = b·h³/12 = ${nf(r.I/1e6,2)}·10⁶ mm⁴</p>
+  <p>${m.n}: f<sub>m,k</sub> = ${nf(m.fm,1)} MPa, f<sub>v,k</sub> = ${nf(m.fv,1)} MPa, E<sub>0,mean</sub> = ${nf(m.E,0)} MPa, ρ<sub>mean</sub> = ${m.rm} kg/m³; γ<sub>M</sub> = ${nf(r.gM)} (${m.t==='r'?'rastlé drevo':'lepené lamelové drevo'})</p>
+  <p>k<sub>h</sub> = ${nf(r.kh,3)} ${m.t==='r'?(r.h<150?'(h < 150 mm → (150/h)<sup>0,2</sup> ≤ 1,3)':'(h ≥ 150 mm)'):(r.h<600?'(h < 600 mm → (600/h)<sup>0,1</sup> ≤ 1,1)':'(h ≥ 600 mm)')}, k<sub>cr</sub> = ${nf(r.kcr)}, k<sub>def</sub> = ${nf(r.kd,1)} (trieda prevádzky ${q.sc})</p>
+  <h3>2. Zaťaženie</h3><p>${q.self?`vlastná tiaž g<sub>s</sub> = ρ·g·b·h = ${nf(r.gs,3)} kN/m; `:''}G<sub>k</sub> = ${nf(r.G,3)} kN/m, Q<sub>k</sub> = ${nf(r.Q,3)} kN/m</p>
+  <table><tr><th>Kombinácia</th><th>E<sub>d</sub> [kN/m]</th><th>k<sub>mod</sub></th><th>M<sub>d</sub> [kNm]</th><th>V<sub>d</sub> [kN]</th><th>ohyb</th><th>šmyk</th></tr>
+  ${r.combos.map(c=>`<tr><td>${c.n} (${durN(c.dur)})</td><td>${nf(c.Ed,3)}</td><td>${nf(c.km)}</td><td>${nf(c.M,3)}</td><td>${nf(c.V,3)}</td><td>${pc(c.um)}</td><td>${pc(c.uv)}</td></tr>`).join('')}</table>
+  <p class="hint">E<sub>d</sub> = γ<sub>G</sub>·G<sub>k</sub> (+ γ<sub>Q</sub>·Q<sub>k</sub>); M<sub>d</sub> = E<sub>d</sub>·L²/8; V<sub>d</sub> = E<sub>d</sub>·L/2. Rozhoduje kombinácia s najväčším využitím.</p>
+  <h3>3. Ohyb (čl. 6.1.6)</h3><p>σ<sub>m,d</sub> = M<sub>d</sub>/W = ${nf(cm.sig)} MPa; f<sub>m,d</sub> = k<sub>mod</sub>·k<sub>h</sub>·f<sub>m,k</sub>/γ<sub>M</sub> = ${nf(cm.km)}·${nf(r.kh,3)}·${nf(m.fm,1)}/${nf(r.gM)} = ${nf(cm.fmd)} MPa → <b>${pc(cm.um)}</b></p>
+  <h3>4. Šmyk (čl. 6.1.7)</h3><p>τ<sub>d</sub> = 1,5·V<sub>d</sub>/(k<sub>cr</sub>·b·h) = ${nf(cv.tau,3)} MPa; f<sub>v,d</sub> = k<sub>mod</sub>·f<sub>v,k</sub>/γ<sub>M</sub> = ${nf(cv.fvd,3)} MPa → <b>${pc(cv.uv)}</b></p>
+  <h3>5. Priehyb (čl. 2.2.3, 7.2)</h3><p>w = 5·q·L⁴/(384·E<sub>0,mean</sub>·I): w<sub>inst,G</sub> = ${nf(r.wG)} mm, w<sub>inst,Q</sub> = ${nf(r.wQ)} mm, w<sub>inst</sub> = ${nf(r.winst)} mm → <b>${pc(r.ui)}</b></p>
+  <p>w<sub>fin</sub> = w<sub>inst,G</sub>·(1 + k<sub>def</sub>) + w<sub>inst,Q</sub>·(1 + ψ<sub>2</sub>·k<sub>def</sub>) = ${nf(r.wfin)} mm → <b>${pc(r.uf)}</b></p>
+  <p class="hint">Zanedbaná je šmyková deformácia a nadvýšenie. Použité odporúčané hodnoty normy – over národnú prílohu. Klopenie nie je posúdené (predpoklad k<sub>crit</sub> = 1).</p></details>
+  <div class="pfoot"><button class="btn" onclick="window.print()">Vytlačiť / PDF</button><span>Vypočítané na lnstatik.sk · ${new Date().toLocaleDateString('sk-SK')}</span></div>`}
+function vTriedy(){const ks=Object.keys(MAT);
+  $('#main').innerHTML=topbar(`<a href="#">Úvod</a> / <a href="#t">Nástroje</a> / Triedy dreva`)+`<div class="tool md"><h1>Triedy dreva a súčinitele</h1><p class="lead">Charakteristické hodnoty podľa STN EN 338 (rastlé ihličnaté drevo) a STN EN 14080 (lepené lamelové drevo, homogénne). Súčinitele podľa STN EN 1995-1-1 – odporúčané hodnoty.</p>
+  <div class="tw"><table><tr><th>Vlastnosť</th><th>Jedn.</th>${ks.map(k=>`<th>${k}</th>`).join('')}</tr>
+  ${[['fm','f<sub>m,k</sub> ohyb','MPa',1],['ft0','f<sub>t,0,k</sub> ťah','MPa',1],['fc0','f<sub>c,0,k</sub> tlak','MPa',1],['fv','f<sub>v,k</sub> šmyk','MPa',1],['E','E<sub>0,mean</sub>','MPa',0],['E05','E<sub>0,05</sub>','MPa',0],['G','G<sub>mean</sub>','MPa',0],['rk','ρ<sub>k</sub>','kg/m³',0],['rm','ρ<sub>mean</sub>','kg/m³',0]].map(([k,n,u,d])=>`<tr><td>${n}</td><td>${u}</td>${ks.map(c=>`<td>${nf(MAT[c][k],d)}</td>`).join('')}</tr>`).join('')}</table></div>
+  <h2>k<sub>mod</sub> – rastlé a lepené lamelové drevo</h2><div class="tw"><table><tr><th>Trieda prevádzky</th>${DUR.map(d=>`<th>${d[1]}</th>`).join('')}</tr>${[1,2,3].map(s=>`<tr><td>${s}</td>${DUR.map(d=>`<td>${nf(KMOD[s][d[0]])}</td>`).join('')}</tr>`).join('')}</table></div>
+  <p class="hint">Trvanie zaťaženia – príklady: stále (vlastná tiaž), dlhodobé (sklady), strednodobé (úžitkové zaťaženie), krátkodobé (sneh, vietor – podľa národnej prílohy), okamžité (mimoriadne).</p>
+  <h2>k<sub>def</sub> a γ<sub>M</sub></h2><div class="tw"><table><tr><th></th><th>TP 1</th><th>TP 2</th><th>TP 3</th><th>γ<sub>M</sub></th></tr>
+  <tr><td>Rastlé drevo</td><td>${nf(KDEF[1],1)}</td><td>${nf(KDEF[2],1)}</td><td>${nf(KDEF[3],1)}</td><td>1,30</td></tr><tr><td>Lepené lamelové drevo</td><td>${nf(KDEF[1],1)}</td><td>${nf(KDEF[2],1)}</td><td>${nf(KDEF[3],1)}</td><td>1,25</td></tr></table></div>
+  <p class="hint">TP 1 – vnútri, vykurované (vlhkosť dreva do cca 12 %); TP 2 – pod strechou, nevykurované (do cca 20 %); TP 3 – vonku, nechránené.</p></div>`}
+
+function route(){const h=location.hash.slice(1);const [v,a,b]=h.split('/');S.id=null;S.sec=null;
+  if(v==='a'){S.id=a;const x=W.articles[a];S.sec=x?norm({...x}).sec:null;vArt(a)}
+  else if(v==='p'){S.sec='p';vPrir()}else if(v==='k'){S.sec='p';S.open[a]=true;vCh(a)}
+  else if(v==='t'){S.sec='t';if(a==='tram'){S.id='t:tram';vTram()}else if(a==='triedy'){S.id='t:triedy';vTriedy()}else vTools()}
+  else if(v==='d'){S.sec='d';vDet()}else if(v==='n'){S.sec='n';vNav()}
+  else if(v==='novy')vEdit(null,a,b);else if(v==='upravit'){S.id=a;vEdit(a)}else vHome();
   drawSide();window.scrollTo(0,0)}
+
 window.addEventListener('hashchange',()=>{if(document.body.classList.contains('on'))route()});
 window.addEventListener('beforeunload',e=>{const f=$('#f');if(f&&$('#body')&&location.hash.match(/^#(novy|upravit)/)){e.preventDefault();e.returnValue=''}});
 
 // ---------- štart ----------
-function gate(msg){$('#gate').innerHTML=`<style>#gate{background:#fff;min-height:100vh;display:flex;flex-direction:column}#gate .t{display:flex;justify-content:space-between;align-items:center;padding:28px 40px}#gate .t a{color:#8C959F;font-size:13px;cursor:pointer}#gate .c{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px 24px 60px}#gate svg.beam{width:min(640px,92vw);height:auto}#gate h1{font-size:clamp(30px,5vw,48px);margin:34px 0 12px;letter-spacing:-.02em;color:#1F2328}#gate p{color:#6E7781;font-size:17px;margin:0}#gate .f{text-align:center;color:#AEB4BA;font-size:12px;padding:22px}</style><div class="t">${brand('#1F2328')}<a id="login">Prihlásenie</a></div>${msg?`<p style="text-align:center;color:#B42318;font-size:14px">${esc(msg)}</p>`:''}<div class="c"><svg class="beam" viewBox="0 0 640 230" fill="none" stroke="#1F2328" stroke-width="2"><g stroke="#C8102E" stroke-width="1.6">${Array.from({length:13},(_,i)=>{const x=80+i*40;return `<line x1="${x}" y1="20" x2="${x}" y2="62"/><path d="M${x-5} 54 L${x} 64 L${x+5} 54"/>`}).join('')}<line x1="80" y1="20" x2="560" y2="20"/></g><text x="575" y="25" fill="#C8102E" stroke="none" font-size="15" font-style="italic">q</text><line x1="60" y1="72" x2="580" y2="72" stroke-width="5"/><path d="M80 75 L66 98 L94 98 Z"/><path d="M560 75 L546 98 L574 98 Z"/><line x1="538" y1="102" x2="582" y2="102"/>${[544,552,560,568,576].map(x=>`<circle cx="${x}" cy="101" r="0"/>`).join('')}<path d="M80 135 Q320 245 560 135" stroke="#8C959F" stroke-dasharray="5 5"/><line x1="80" y1="135" x2="560" y2="135" stroke="#C9CED3" stroke-width="1"/><text x="320" y="214" fill="#8C959F" stroke="none" font-size="14" text-anchor="middle" font-style="italic">M = q·L² / 8</text></svg><h1>Statika, krok za krokom.</h1><p>Poznámky a pomôcky pre nosné konštrukcie. Pripravujeme.</p></div><div class="f">© ${new Date().getFullYear()} LN · STATIK</div>`;$('#login').onclick=()=>msal.loginRedirect({scopes:SCOPES,prompt:'select_account'})}
+function gate(msg){$('#gate').innerHTML=`<style>#gate{background:#fff;min-height:100vh;display:flex;flex-direction:column}#gate .t{display:flex;justify-content:space-between;align-items:center;padding:28px 40px}#gate .t a{color:#8C959F;font-size:13px;cursor:pointer}#gate .c{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px 24px 60px}#gate svg.beam{width:min(640px,92vw);height:auto}#gate h1{font-size:clamp(30px,5vw,48px);margin:34px 0 12px;letter-spacing:-.02em;color:#1F2328}#gate p{color:#6E7781;font-size:17px;margin:0}#gate .f{text-align:center;color:#AEB4BA;font-size:12px;padding:22px}</style><div class="t">${brand('#1F2328')}<a id="login">Prihlásenie</a></div>${msg?`<p style="text-align:center;color:#B42318;font-size:14px">${esc(msg)}</p>`:''}<div class="c"><svg class="beam" viewBox="0 0 640 230" fill="none" stroke="#1F2328" stroke-width="2"><g stroke="#C8102E" stroke-width="1.6">${Array.from({length:13},(_,i)=>{const x=80+i*40;return `<line x1="${x}" y1="20" x2="${x}" y2="62"/><path d="M${x-5} 54 L${x} 64 L${x+5} 54"/>`}).join('')}<line x1="80" y1="20" x2="560" y2="20"/></g><text x="575" y="25" fill="#C8102E" stroke="none" font-size="15" font-style="italic">q</text><line x1="60" y1="72" x2="580" y2="72" stroke-width="5"/><path d="M80 75 L66 98 L94 98 Z"/><path d="M560 75 L546 98 L574 98 Z"/><line x1="538" y1="102" x2="582" y2="102"/>${[544,552,560,568,576].map(x=>`<circle cx="${x}" cy="101" r="0"/>`).join('')}<path d="M80 135 Q320 245 560 135" stroke="#8C959F" stroke-dasharray="5 5"/><line x1="80" y1="135" x2="560" y2="135" stroke="#C9CED3" stroke-width="1"/><text x="320" y="214" fill="#8C959F" stroke="none" font-size="14" text-anchor="middle" font-style="italic">M = q·L² / 8</text></svg><h1>Statika, krok za krokom.</h1><p>Drevené konštrukcie – príručka, nástroje a detaily. Pripravujeme.</p></div><div class="f">© ${new Date().getFullYear()} LN · STATIK</div>`;$('#login').onclick=()=>msal.loginRedirect({scopes:SCOPES,prompt:'select_account'})}
 (async()=>{
   msal=new window.msal.PublicClientApplication({auth:{clientId:CFG.clientId,authority:'https://login.microsoftonline.com/'+CFG.tenantId,redirectUri:location.origin+'/'},cache:{cacheLocation:'localStorage'}});
   await msal.initialize();let err='';
