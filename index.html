@@ -83,6 +83,18 @@ aside ul.flat{list-style:none;margin:0 0 4px;padding:0}aside ul.flat a{display:b
 .dg{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}.dc .th{aspect-ratio:4/3;background:var(--paper);border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:4px}.dc .th img{width:100%;height:100%;object-fit:cover}.dc .th span{font-size:12px}
 .row{grid-template-columns:2fr 1.2fr 1.2fr auto}.row2{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center;margin:-2px 0 14px}.row2 .chk{padding:0}.row2 .lbl{font-size:13px;font-weight:600;color:var(--ink2)}
 dialog{border:1px solid var(--line);border-radius:12px;padding:18px;width:min(460px,92vw)}dialog form{display:flex;flex-direction:column;gap:10px}#dlr{display:flex;flex-direction:column;max-height:50vh;overflow:auto}.dli{text-align:left;background:none;border:0;padding:8px 6px;border-bottom:1px solid var(--line2)}.dli:hover{background:var(--paper)}.dli small{color:var(--ink3)}
+aside nav a{display:flex;align-items:baseline;gap:10px;color:#D5D9DD;text-decoration:none;padding:7px 10px;border-radius:7px;font-size:14.5px}
+aside nav a:hover{background:#2B3036;color:#fff}aside nav a.on{background:#fff;color:var(--ink)}aside nav a.big{font-weight:600;color:#fff}aside nav a.big.on{color:var(--ink)}
+aside nav a i{font-style:normal;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#7D858E;min-width:18px}aside nav a.on i{color:var(--ink3)}
+aside .grp{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#7D858E;padding:18px 10px 6px}
+.top{position:sticky;top:0;z-index:3;background:var(--paper);padding:14px 0;margin:-14px 0 18px}.tl1{display:flex;gap:10px;align-items:center;min-width:0}.tr1{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#q{width:300px;max-width:100%;background:#fff}
+.toc section{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px}.toc h2{font-size:17px;margin:0 0 4px}.toc h2 i{font-style:normal;font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--ink3);margin-right:6px}
+.toc .recent{margin-top:4px}.toc .add{display:inline-block;font-size:13px;color:var(--ink3);text-decoration:none;margin-top:6px}.toc .add:hover{color:var(--accent)}
+.side-tools{display:flex;flex-direction:column;gap:6px;background:#F3F7FC;border:1px solid #DCE7F3;border-radius:12px;padding:14px 18px;margin-top:16px}.side-tools a{text-decoration:none;font-weight:600}
+.pager{display:flex;justify-content:space-between;margin-top:22px;gap:12px}.pager a{text-decoration:none;font-weight:600}
+.gh2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin:22px 0 10px}.recent h2 small{color:var(--ink3);font-weight:400;font-size:14px}
+@media(max-width:860px){#q{width:100%}.tr1{width:100%}.tr1 #q{flex:1}}
 /* nástroje */
 .tool h1{font-size:30px;margin:0 0 6px;letter-spacing:-.02em}.tool .lead{color:var(--ink2);margin:0 0 22px}
 .tl{display:grid;grid-template-columns:minmax(280px,380px) 1fr;gap:20px;align-items:start}
@@ -174,11 +186,22 @@ function tramCalc(p){
  const r={m,L,b,h,A,W,I,gs,G,Q,gM,kcr,kh,kd,combos,cm,cv,wG,wQ,winst,wfin,lim1,lim2,ui:winst/lim1,uf:wfin/lim2};
  r.u=Math.max(cm.um,cv.uv,r.ui,r.uf);return r}
 // ---------- štruktúra ----------
-const CH=[['material','Materiál','Triedy pevnosti, vlhkosť, k_mod, k_def'],['prvky','Prvky','Ohyb, šmyk, tlak, vzper, klopenie, priehyb'],['spoje','Spoje','Kolíkové spoje, skrutky, klince, tesárske spoje'],['krovy','Krovy a strechy','Krokvy, väznice, kleštiny, väzníky'],['stropy','Stropy','Trámové stropy, priehyb, kmitanie'],['steny','Steny a drevostavby','Rámové a panelové konštrukcie, CLT'],['vlhkost','Vlhkosť a trvanlivosť','Ochrana dreva, triedy použitia, poruchy'],['poziar','Požiar','Zuhoľnatenie, redukovaný prierez'],['zatazenia','Zaťaženia','Sneh, vietor a úžitkové zaťaženie pre drevo'],['existujuce','Existujúce konštrukcie','Posudzovanie starého dreva, sanácia, zosilnenie'],['normy','Normy a literatúra','Prehľad noriem a zdrojov']];
+const CH=[
+ {k:'drevo',n:'Drevo',d:'Druhy dreva, stavba a vlastnosti, vlhkosť, triedenie',s:[['dr-druhy','Druhy dreva'],['dr-vlastnosti','Stavba a vlastnosti dreva'],['dr-vlhkost','Vlhkosť a zosychanie'],['dr-triedenie','Triedenie a vady dreva']]},
+ {k:'materialy',n:'Materiály',d:'C24, GL24h, KVH, CLT, LVL, dosky – vlastnosti a tabuľky',s:[['ma-rastle','Rastlé drevo (C16–C30)'],['ma-gl','Lepené lamelové drevo (GL)'],['ma-kvh','KVH, DUO a TRIO hranoly'],['ma-clt','CLT – krížom lepené drevo'],['ma-lvl','LVL a iné kompozity'],['ma-dosky','Dosky (OSB, preglejka, DVD)']]},
+ {k:'prvky',n:'Prvky a konštrukcie',d:'Steny, stropy a strechy – druhy, skladby, prvky a posúdenie',s:[['pr-stena-ram','Steny – stĺpikové (rámové)'],['pr-stena-clt','Steny – CLT'],['pr-strop-tram','Stropy – trámové'],['pr-strop-clt','Stropy – CLT'],['pr-strop-spr','Stropy – spriahnuté drevo-betón'],['pr-krov','Strechy – klasické krovy'],['pr-vaznik','Strechy – väzníkové'],['pr-nosnik','Nosníky a stĺpy']]},
+ {k:'spoje',n:'Spoje',d:'Tesárske spoje, kolíkové spoje, oceľové spojovacie prvky',s:[['sp-tesar','Tesárske spoje'],['sp-kolik','Kolíkové spoje (klince, skrutky, svorníky)'],['sp-ocel','Oceľové spojovacie prvky']]},
+ {k:'navrh',n:'Navrhovanie',d:'Zásady podľa Eurokódu, zaťaženia, stabilita, priehyb a kmitanie',s:[['na-zasady','Zásady navrhovania (MSÚ, MSP)'],['na-zataz','Zaťaženia'],['na-stabil','Vzper a klopenie'],['na-priehyb','Priehyb a kmitanie']]},
+ {k:'ochrana',n:'Ochrana a trvanlivosť',d:'Vlhkosť v konštrukcii, ochrana dreva, požiar',s:[['oc-vlhkost','Vlhkosť v konštrukcii'],['oc-ochrana','Ochrana dreva'],['oc-poziar','Požiar']]},
+ {k:'existujuce',n:'Existujúce konštrukcie',d:'Prieskum, posúdenie, sanácia a zosilnenie',s:[['ex-pruzkum','Prieskum a posúdenie'],['ex-sanacia','Sanácia a zosilnenie']]},
+ {k:'normy',n:'Normy a literatúra',d:'Prehľad noriem a odporúčaných zdrojov',s:[['no-normy','Normy'],['no-lit','Literatúra a zdroje']]}];
+const SUB={};CH.forEach((c,i)=>c.s.forEach(([k,n])=>SUB[k]={n,ch:c.k,i}));
+const OLD={drevo:'dr-vlastnosti',material:'dr-vlastnosti',krovy:'pr-krov',stropy:'pr-strop-tram',steny:'pr-stena-ram',spoje:'sp-kolik',vlhkost:'oc-vlhkost',poziar:'oc-poziar',zatazenia:'na-zataz',existujuce:'ex-pruzkum',prvky:'pr-nosnik',normy:'no-normy'};
 const SEC={p:['Príručka','Karta príručky'],d:['Detaily','Detail'],n:['Riešim…','Návod „Riešim…“']};
 const WHO=[['stu','Študent'],['stat','Statik'],['arch','Architekt'],['stav','Stavebník']];
-const TOOLS=[{id:'tram',n:'Drevený trám – prostý nosník',d:'Ohyb, šmyk a priehyb pri rovnomernom zaťažení',ch:'prvky'},{id:'triedy',n:'Triedy dreva a súčinitele',d:'C16–C30, GL24h–GL32h, k_mod, k_def, γ_M',ch:'material'}];
-const chName=k=>(CH.find(c=>c[0]===k)||[,'Iné'])[1];
+const TOOLS=[{id:'tram',n:'Drevený trám – prostý nosník',d:'Ohyb, šmyk a priehyb pri rovnomernom zaťažení',ch:'pr-nosnik',g:'Prvky'},{id:'triedy',n:'Triedy dreva a súčinitele',d:'C16–C30, GL24h–GL32h, k_mod, k_def, γ_M',ch:'ma-rastle',g:'Materiály'}];
+const subName=k=>(SUB[k]||{n:'Iné'}).n;const chOf=k=>CH.find(c=>c.k===(SUB[k]||{}).ch)||CH[0];
+const chName=k=>chOf(k).n;
 const TPL={
 p:`## V skratke
 Dve–tri vety: čo to je a prečo na tom záleží.
@@ -221,87 +244,86 @@ n:`## Situácia
 ## Súvisiace
 - `};
 // staré články (pred prestavbou) → príručka
-function norm(a){if(!a.sec){a.sec='p';if(!CH.some(c=>c[0]===a.cat))a.cat=a.cat==='normy'?'normy':a.cat==='zatazenia'?'zatazenia':'material'}a.who=a.who||[];return a}
+function norm(a){if(!a.sec)a.sec='p';if(!SUB[a.cat])a.cat=OLD[a.cat]||'dr-vlastnosti';a.who=a.who||[];return a}
 
 // ---------- vykreslenie ----------
 marked.setOptions({gfm:true,breaks:false});
 function md(text){return marked.parse(String(text||''))}
 async function fixImgs(root){for(const im of root.querySelectorAll('img[src^="od:"]')){const id=im.getAttribute('src').slice(3);im.removeAttribute('src');im.alt=im.alt||'obrázok';try{im.src=await imgUrl(id)}catch(e){im.alt='Obrázok sa nepodarilo načítať'}}}
-const S={id:null,q:'',who:'',open:{},sec:null};
+const S={id:null,q:'',nav:''};
 const list=()=>Object.entries(W.articles).map(([id,a])=>norm({id,...a}));
-const vis=a=>!S.who||!a.who.length||a.who.includes(S.who);
 const byOrd=(a,b)=>((a.order||999)-(b.order||999))||a.title.localeCompare(b.title,'sk');
 const plural=(n,a,b,c)=>n===1?a:n>1&&n<5?b:c;
-function drawSide(){const q=S.q.trim().toLowerCase();const all=list().filter(vis).filter(a=>!q||(a.title+' '+a.body).toLowerCase().includes(q));
-  const tl=TOOLS.filter(t=>!q||(t.n+' '+t.d).toLowerCase().includes(q));
-  const P=all.filter(a=>a.sec==='p'),D=all.filter(a=>a.sec==='d').sort(byOrd),N=all.filter(a=>a.sec==='n').sort(byOrd);
-  const li=a=>`<li><a href="#a/${a.id}" class="${a.id===S.id?'on':''}">${esc(a.title)}${a.public?'<span class="pub">●</span>':''}</a></li>`;
+const nn=i=>String(i+1).padStart(2,'0');
+function drawSide(){const it=(h,n,key,cls='')=>`<a href="${h}" class="${cls} ${S.nav===key?'on':''}">${n}</a>`;
   $('#side').innerHTML=`${brand('#F4F5F6')}
-  <input id="q" type="search" placeholder="Hľadať…" aria-label="Hľadať" value="${esc(S.q)}">
-  <div class="who" role="group" aria-label="Pre koho">${[['','Všetci'],...WHO].map(([k,n])=>`<button data-who="${k}" class="${S.who===k?'on':''}">${n}</button>`).join('')}</div>
-  <button class="btn p" id="new" style="justify-content:center">+ Nová karta</button>
-  <nav aria-label="Obsah">
-   <a class="sh ${S.sec==='p'?'on':''}" href="#p">Príručka</a>
-   ${CH.map(([k,n])=>{const it=P.filter(a=>a.cat===k).sort(byOrd);const open=q?it.length>0:(S.open[k]??it.some(a=>a.id===S.id));if(q&&!it.length)return '';
-    return `<div class="cat"><button data-cat="${k}" aria-expanded="${open}">${esc(n)} <small>${it.length||''}</small></button>${open&&it.length?`<ul>${it.map(li).join('')}</ul>`:''}</div>`}).join('')}
-   <a class="sh ${S.sec==='t'?'on':''}" href="#t">Nástroje <small>${tl.length}</small></a>
-   <ul class="flat">${tl.map(t=>`<li><a href="#t/${t.id}" class="${S.id==='t:'+t.id?'on':''}">${esc(t.n)}</a></li>`).join('')}</ul>
-   <a class="sh ${S.sec==='d'?'on':''}" href="#d">Detaily <small>${D.length||''}</small></a>
-   ${q&&D.length?`<ul class="flat">${D.map(li).join('')}</ul>`:''}
-   <a class="sh ${S.sec==='n'?'on':''}" href="#n">Riešim… <small>${N.length||''}</small></a>
-   ${N.length?`<ul class="flat">${N.map(li).join('')}</ul>`:''}
+  <nav aria-label="Hlavná navigácia">
+   ${it('#','Úvod','home','big')}
+   <div class="grp">Príručka</div>
+   ${CH.map((c,i)=>it('#k/'+c.k,`<i>${nn(i)}</i>${esc(c.n)}`,'k:'+c.k,'ch')).join('')}
+   <div class="grp">Ďalšie</div>
+   ${it('#t','Nástroje','t','big')}${it('#d','Detaily','d','big')}${it('#n','Riešim…','n','big')}
   </nav>
-  <div class="foot"><span id="st">Uložené v OneDrive</span><span>${esc(account&&account.username||'')}</span><button id="out">Odhlásiť sa</button></div>`;
-  const qi=$('#q');qi.oninput=()=>{S.q=qi.value;const p=qi.selectionStart;drawSide();const n=$('#q');n.focus();n.setSelectionRange(p,p)};
-  $('#new').onclick=()=>{location.hash='#novy/'+(S.sec==='d'?'d':S.sec==='n'?'n':'p')};$('#out').onclick=()=>msal.logoutRedirect({account});
-  document.querySelectorAll('[data-who]').forEach(b=>b.onclick=()=>{S.who=b.dataset.who;route()});
-  document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{const k=b.dataset.cat;S.open[k]=b.getAttribute('aria-expanded')!=='true';drawSide()});
+  <div class="foot"><span>${esc(account&&account.username||'')}</span><button id="out">Odhlásiť sa</button></div>`;
+  $('#out').onclick=()=>msal.logoutRedirect({account});
   document.querySelectorAll('aside nav a').forEach(a=>a.addEventListener('click',()=>document.body.classList.remove('nav')))}
-const topbar=crumb=>`<div class="top"><div style="display:flex;gap:10px;align-items:center"><button class="btn menu" onclick="document.body.classList.toggle('nav')" aria-label="Menu">☰</button><span class="crumb">${crumb}</span></div><div id="tb" style="display:flex;gap:8px"></div></div>`;
+function shell(){$('#main').innerHTML=`<div class="top"><div class="tl1"><button class="btn menu" onclick="document.body.classList.toggle('nav')" aria-label="Menu">☰</button><span class="crumb" id="crumb"></span></div>
+  <div class="tr1"><input id="q" type="search" placeholder="Hľadať…" aria-label="Hľadať"><span id="tb"></span><button class="btn p" id="new">+ Nová karta</button></div></div><div id="content"></div>`;
+  const qi=$('#q');qi.oninput=()=>{S.q=qi.value.trim();if(S.q)vSearch();else route(true)};
+  $('#new').onclick=()=>{const h=location.hash;const m=h.match(/^#k\/(\w+)/);location.hash=h.startsWith('#d')?'#novy/d':h.startsWith('#n')?'#novy/n':m?'#novy/p/'+(CH.find(c=>c.k===m[1])||CH[0]).s[0][0]:'#novy/p'}}
+function page(crumb,html){$('#crumb').innerHTML=crumb;$('#tb').innerHTML='';$('#content').innerHTML=html}
 const whoTags=a=>a.who.map(k=>`<span class="tag">${(WHO.find(w=>w[0]===k)||[,k])[1]}</span>`).join(' ');
-function vHome(){const all=list().filter(vis);const c=s=>all.filter(a=>a.sec===s).length;const rec=[...all].sort((a,b)=>(b.updated||0)-(a.updated||0)).slice(0,6);
-  $('#main').innerHTML=topbar('Úvod')+`<div class="home"><p class="eyb">LN · STATIK</p><h1>Drevené konštrukcie</h1><p class="lead">Príručka, nástroje a detaily na jednom mieste. Každá vec má svoje pevné miesto – nový obsah sa zaraďuje do kapitol, nie navrch. Zatiaľ súkromné; čo označíš <span class="tag pub">verejné</span>, pôjde neskôr von.</p>
+const row=a=>`<a href="#a/${a.id}"><b>${esc(a.title)} ${a.public?'<span class="tag pub">verejné</span>':''}</b><span>${a.sec==='p'?esc(subName(a.cat)):SEC[a.sec][0]} · ${fdt(a.updated)}</span></a>`;
+function vSearch(){const q=S.q.toLowerCase();const all=list().filter(a=>(a.title+' '+a.body).toLowerCase().includes(q));const tl=TOOLS.filter(t=>(t.n+' '+t.d).toLowerCase().includes(q));
+  const grp=(n,arr)=>arr.length?`<div class="recent"><h2>${n} <small>${arr.length}</small></h2>${arr.map(row).join('')}</div>`:'';
+  page('Hľadanie',`<div class="home"><h1>Výsledky pre „${esc(S.q)}“</h1>
+  ${tl.length?`<div class="recent"><h2>Nástroje <small>${tl.length}</small></h2>${tl.map(t=>`<a href="#t/${t.id}"><b>${esc(t.n)}</b><span>${esc(t.d)}</span></a>`).join('')}</div>`:''}
+  ${grp('Príručka',all.filter(a=>a.sec==='p'))}${grp('Detaily',all.filter(a=>a.sec==='d'))}${grp('Riešim…',all.filter(a=>a.sec==='n'))}
+  ${!all.length&&!tl.length?'<div class="empty">Nič sa nenašlo.</div>':''}</div>`);
+  document.querySelectorAll('#content a').forEach(a=>a.addEventListener('click',()=>{S.q='';$('#q').value=''}))}
+function vHome(){const all=list();const c=s=>all.filter(a=>a.sec===s).length;const rec=[...all].sort((a,b)=>(b.updated||0)-(a.updated||0)).slice(0,6);
+  page('Úvod',`<div class="home"><p class="eyb">LN · STATIK</p><h1>Drevené konštrukcie</h1><p class="lead">Príručka a nástroje pre navrhovanie drevených konštrukcií. Zatiaľ súkromné; čo označíš <span class="tag pub">verejné</span>, pôjde neskôr von.</p>
   <div class="pil">
-   <a class="pc" href="#p"><i>01</i><b>Príručka</b><span>Karty tém v ${CH.length} kapitolách – od materiálu po existujúce konštrukcie.</span><em>${c('p')} ${plural(c('p'),'karta','karty','kariet')}</em></a>
+   <a class="pc" href="#p"><i>01</i><b>Príručka</b><span>Od dreva cez materiály a prvky až po spoje a existujúce konštrukcie.</span><em>${c('p')} ${plural(c('p'),'karta','karty','kariet')}</em></a>
    <a class="pc" href="#t"><i>02</i><b>Nástroje</b><span>Kalkulačky a tabuľky s vypísaným postupom výpočtu.</span><em>${TOOLS.length} ${plural(TOOLS.length,'nástroj','nástroje','nástrojov')}</em></a>
-   <a class="pc" href="#d"><i>03</i><b>Detaily</b><span>Katalóg konštrukčných detailov s obrázkom a tým, na čo dať pozor.</span><em>${c('d')} ${plural(c('d'),'detail','detaily','detailov')}</em></a>
-   <a class="pc" href="#n"><i>04</i><b>Riešim…</b><span>Krátke cesty pre konkrétne situácie, napr. „chcem zobytniť podkrovie“.</span><em>${c('n')} ${plural(c('n'),'návod','návody','návodov')}</em></a>
+   <a class="pc" href="#d"><i>03</i><b>Detaily</b><span>Katalóg konštrukčných detailov s obrázkom.</span><em>${c('d')} ${plural(c('d'),'detail','detaily','detailov')}</em></a>
+   <a class="pc" href="#n"><i>04</i><b>Riešim…</b><span>Krátke cesty pre konkrétne situácie.</span><em>${c('n')} ${plural(c('n'),'návod','návody','návodov')}</em></a>
   </div>
-  <div class="recent"><h2>Naposledy upravené</h2>${rec.length?rec.map(a=>`<a href="#a/${a.id}"><b>${esc(a.title)}</b><span>${SEC[a.sec][0]}${a.sec==='p'?' · '+esc(chName(a.cat)):''} · ${fdt(a.updated)}</span></a>`).join(''):'<div class="empty">Zatiaľ nič. Začni kartou v príručke – klikni na „+ Nová karta“.</div>'}</div></div>`}
-function vPrir(){const all=list().filter(vis).filter(a=>a.sec==='p');
-  $('#main').innerHTML=topbar(`<a href="#">Úvod</a> / Príručka`)+`<div class="home"><h1>Príručka</h1><p class="lead">Kapitoly sú pevné; karty sa do nich postupne dopĺňajú.</p>
-  <div class="grid">${CH.map(([k,n,d],i)=>{const it=all.filter(a=>a.cat===k).length;return `<a class="card" href="#k/${k}"><small class="num">${String(i+1).padStart(2,'0')}</small><b>${esc(n)}</b><span>${esc(d)}</span><span class="cnt">${it?it+' '+plural(it,'karta','karty','kariet'):'zatiaľ prázdne'}</span></a>`}).join('')}</div></div>`}
-function vCh(k){const it=list().filter(vis).filter(a=>a.sec==='p'&&a.cat===k).sort(byOrd);const ch=CH.find(c=>c[0]===k)||[k,k,''];const tl=TOOLS.filter(t=>t.ch===k);
-  $('#main').innerHTML=topbar(`<a href="#">Úvod</a> / <a href="#p">Príručka</a> / ${esc(ch[1])}`)+`<div class="home"><h1>${esc(ch[1])}</h1><p class="lead">${esc(ch[2])}</p>
-  ${it.length?`<div class="recent">${it.map(a=>`<a href="#a/${a.id}"><b>${esc(a.title)} ${a.public?'<span class="tag pub">verejné</span>':''}</b><span>${fdt(a.updated)}</span></a>`).join('')}</div>`:`<div class="empty">V tejto kapitole zatiaľ nie je žiadna karta. <a href="#novy/p/${k}">Napísať prvú</a></div>`}
-  ${tl.length?`<div class="recent"><h2>Nástroje k tejto kapitole</h2>${tl.map(t=>`<a href="#t/${t.id}"><b>${esc(t.n)}</b><span>${esc(t.d)}</span></a>`).join('')}</div>`:''}
-  <p style="margin-top:18px"><a class="btn" href="#novy/p/${k}">+ Karta do kapitoly ${esc(ch[1])}</a></p></div>`}
+  <div class="recent"><h2>Naposledy upravené</h2>${rec.length?rec.map(row).join(''):'<div class="empty">Zatiaľ nič. Začni kartou v príručke – „+ Nová karta“ vpravo hore.</div>'}</div></div>`)}
+function vPrir(){const all=list().filter(a=>a.sec==='p');
+  page(`<a href="#">Úvod</a> / Príručka`,`<div class="home"><h1>Príručka</h1><p class="lead">Kapitoly idú za sebou tak, ako na seba nadväzujú – od dreva ako materiálu až po hotové konštrukcie.</p>
+  <div class="grid">${CH.map((c,i)=>{const n=all.filter(a=>SUB[a.cat]&&SUB[a.cat].ch===c.k).length;return `<a class="card" href="#k/${c.k}"><small class="num">${nn(i)}</small><b>${esc(c.n)}</b><span>${c.s.map(x=>esc(x[1])).join(' · ')}</span><span class="cnt">${n?n+' '+plural(n,'karta','karty','kariet'):'zatiaľ prázdne'}</span></a>`}).join('')}</div></div>`)}
+function vCh(k){const c=CH.find(x=>x.k===k);if(!c){location.hash='#p';return}const i=CH.indexOf(c);const all=list().filter(a=>a.sec==='p');const tl=TOOLS.filter(t=>SUB[t.ch]&&SUB[t.ch].ch===k);
+  page(`<a href="#">Úvod</a> / <a href="#p">Príručka</a> / ${esc(c.n)}`,`<div class="home"><p class="eyb">KAPITOLA ${nn(i)}</p><h1>${esc(c.n)}</h1><p class="lead">${esc(c.d)}</p>
+  <div class="toc">${c.s.map(([sk,sn],j)=>{const it=all.filter(a=>a.cat===sk).sort(byOrd);return `<section><h2><i>${i+1}.${j+1}</i> ${esc(sn)}</h2>${it.length?`<div class="recent">${it.map(a=>`<a href="#a/${a.id}"><b>${esc(a.title)} ${a.public?'<span class="tag pub">verejné</span>':''}</b><span>${fdt(a.updated)}</span></a>`).join('')}</div>`:''}<a class="add" href="#novy/p/${sk}">+ karta</a></section>`}).join('')}</div>
+  ${tl.length?`<div class="side-tools"><b>Nástroje k tejto kapitole</b>${tl.map(t=>`<a href="#t/${t.id}">${esc(t.n)} →</a>`).join('')}</div>`:''}
+  <div class="pager">${i>0?`<a href="#k/${CH[i-1].k}">← ${esc(CH[i-1].n)}</a>`:'<span></span>'}${i<CH.length-1?`<a href="#k/${CH[i+1].k}">${esc(CH[i+1].n)} →</a>`:''}</div></div>`)}
 function firstImg(b){const m=String(b||'').match(/!\[[^\]]*\]\(od:([^)\s]+)\)/);return m&&m[1]}
-function vDet(){const it=list().filter(vis).filter(a=>a.sec==='d').sort(byOrd);
-  $('#main').innerHTML=topbar(`<a href="#">Úvod</a> / Detaily`)+`<div class="home"><h1>Detaily</h1><p class="lead">Katalóg konštrukčných detailov. Prvý obrázok v karte sa zobrazí ako náhľad.</p>
-  ${it.length?`<div class="grid dg">${it.map(a=>{const im=firstImg(a.body);return `<a class="card dc" href="#a/${a.id}"><div class="th">${im?`<img data-od="${esc(im)}" alt="">`:'<span>bez obrázka</span>'}</div><b>${esc(a.title)}</b><span>${esc(chName(a.cat))}</span></a>`}).join('')}</div>`:`<div class="empty">Zatiaľ žiadne detaily. <a href="#novy/d">Pridať prvý detail</a></div>`}</div>`;
+function vDet(){const it=list().filter(a=>a.sec==='d').sort(byOrd);
+  page(`<a href="#">Úvod</a> / Detaily`,`<div class="home"><h1>Detaily</h1><p class="lead">Katalóg konštrukčných detailov. Prvý obrázok v karte sa zobrazí ako náhľad.</p>
+  ${it.length?`<div class="grid dg">${it.map(a=>{const im=firstImg(a.body);return `<a class="card dc" href="#a/${a.id}"><div class="th">${im?`<img data-od="${esc(im)}" alt="">`:'<span>bez obrázka</span>'}</div><b>${esc(a.title)}</b><span>${esc(subName(a.cat))}</span></a>`}).join('')}</div>`:`<div class="empty">Zatiaľ žiadne detaily. <a href="#novy/d">Pridať prvý detail</a></div>`}</div>`);
   document.querySelectorAll('img[data-od]').forEach(async im=>{try{im.src=await imgUrl(im.dataset.od)}catch(e){}})}
-function vNav(){const it=list().filter(vis).filter(a=>a.sec==='n').sort(byOrd);
-  $('#main').innerHTML=topbar(`<a href="#">Úvod</a> / Riešim…`)+`<div class="home"><h1>Riešim…</h1><p class="lead">Krátke cesty krok za krokom pre konkrétnu situáciu. Návod nič neopakuje – len poprepája karty, nástroje a detaily.</p>
-  ${it.length?`<div class="recent">${it.map(a=>`<a href="#a/${a.id}"><b>${esc(a.title)}</b><span>${fdt(a.updated)}</span></a>`).join('')}</div>`:`<div class="empty">Zatiaľ žiadne návody. <a href="#novy/n">Napísať prvý</a> – napr. „Chcem zobytniť podkrovie“.</div>`}</div>`}
-function vArt(id){const a=W.articles[id]&&norm({id,...W.articles[id]});if(!a){location.hash='#';return}
-  const cr=a.sec==='p'?`<a href="#p">Príručka</a> / <a href="#k/${a.cat}">${esc(chName(a.cat))}</a>`:a.sec==='d'?`<a href="#d">Detaily</a>`:`<a href="#n">Riešim…</a>`;
-  $('#main').innerHTML=topbar(`<a href="#">Úvod</a> / ${cr}`)+`<article class="doc"><h1>${esc(a.title)}</h1><div class="meta"><span>${SEC[a.sec][1]}</span>${a.sec!=='n'?`<span>${esc(chName(a.cat))}</span>`:''}<span>Revízia ${fdt(a.updated)}</span><span class="tag ${a.public?'pub':''}">${a.public?'verejné':'súkromné'}</span>${whoTags(a)}</div><div class="md" id="md">${md(a.body)}</div></article>`;
+function vNav(){const it=list().filter(a=>a.sec==='n').sort(byOrd);
+  page(`<a href="#">Úvod</a> / Riešim…`,`<div class="home"><h1>Riešim…</h1><p class="lead">Krátke cesty krok za krokom pre konkrétnu situáciu. Návod nič neopakuje – len poprepája karty, nástroje a detaily.</p>
+  ${it.length?`<div class="recent">${it.map(a=>`<a href="#a/${a.id}"><b>${esc(a.title)}</b><span>${fdt(a.updated)}</span></a>`).join('')}</div>`:`<div class="empty">Zatiaľ žiadne návody. <a href="#novy/n">Napísať prvý</a> – napr. „Chcem zobytniť podkrovie“.</div>`}</div>`)}
+function vArt(id){const a=W.articles[id]&&norm({id,...W.articles[id]});if(!a){location.hash='#';return}const c=chOf(a.cat);
+  const cr=a.sec==='p'?`<a href="#p">Príručka</a> / <a href="#k/${c.k}">${esc(c.n)}</a> / ${esc(subName(a.cat))}`:a.sec==='d'?`<a href="#d">Detaily</a>`:`<a href="#n">Riešim…</a>`;
+  page(`<a href="#">Úvod</a> / ${cr}`,`<article class="doc"><h1>${esc(a.title)}</h1><div class="meta"><span>${SEC[a.sec][1]}</span>${a.sec!=='n'?`<span>${esc(subName(a.cat))}</span>`:''}<span>Revízia ${fdt(a.updated)}</span><span class="tag ${a.public?'pub':''}">${a.public?'verejné':'súkromné'}</span></div><div class="md" id="md">${md(a.body)}</div></article>`);
   $('#tb').innerHTML=`<button class="btn" id="ed">Upraviť</button>`;$('#ed').onclick=()=>location.hash='#upravit/'+id;fixImgs($('#md'))}
 function vEdit(id,sec,cat){const a0=id?W.articles[id]:null;if(id&&!a0){location.hash='#';return}
-  const a=a0?norm({...a0}):{title:'',sec:SEC[sec]?sec:'p',cat:cat||'material',body:TPL[SEC[sec]?sec:'p'],public:false,who:[],order:''};
-  $('#main').innerHTML=topbar(id?`Úprava: ${esc(a.title)}`:'Nová karta')+`<form id="f">
+  const a=a0?norm({...a0}):{title:'',sec:SEC[sec]?sec:'p',cat:SUB[cat]?cat:'dr-druhy',body:TPL[SEC[sec]?sec:'p'],public:false,who:[],order:''};
+  page(id?`Úprava: ${esc(a.title)}`:'Nová karta',`<form id="f">
   <div class="row"><label class="l">Názov<input name="title" required value="${esc(a.title)}" placeholder="napr. Krokva – posúdenie na ohyb"></label>
   <label class="l">Typ<select name="sec" id="sec">${Object.entries(SEC).map(([k,v])=>`<option value="${k}" ${k===a.sec?'selected':''}>${v[1]}</option>`).join('')}</select></label>
-  <label class="l" id="chl">Kapitola<select name="cat">${CH.map(([k,n])=>`<option value="${k}" ${k===a.cat?'selected':''}>${esc(n)}</option>`).join('')}</select></label>
+  <label class="l" id="chl">Kapitola<select name="cat">${CH.map((c,i)=>`<optgroup label="${nn(i)} ${esc(c.n)}">${c.s.map(([k,n])=>`<option value="${k}" ${k===a.cat?'selected':''}>${esc(n)}</option>`).join('')}</optgroup>`).join('')}</select></label>
   <label class="l" style="max-width:110px">Poradie<input name="order" type="number" min="1" value="${esc(a.order||'')}" placeholder="—"></label></div>
-  <div class="row2"><span class="lbl">Pre koho:</span>${WHO.map(([k,n])=>`<label class="chk"><input type="checkbox" name="who" value="${k}" ${a.who.includes(k)?'checked':''}> ${n}</label>`).join('')}<span style="flex:1"></span><label class="chk"><input type="checkbox" name="public" ${a.public?'checked':''}> Verejné</label></div>
+  <div class="row2">${a.who.map(k=>`<input type="hidden" name="who" value="${k}">`).join('')}<span style="flex:1"></span><label class="chk"><input type="checkbox" name="public" ${a.public?'checked':''}> Verejné</label></div>
   <div class="tools"><button type="button" class="btn" data-ins="## ">Nadpis</button><button type="button" class="btn" data-wrap="**">Tučné</button><button type="button" class="btn" data-wrap="*">Kurzíva</button><button type="button" class="btn" data-ins="- ">Odrážka</button>
    <button type="button" class="btn" data-tbl="1">Tabuľka</button><button type="button" class="btn" data-ins="> ">Poznámka</button><button type="button" class="btn" id="img">Obrázok</button><button type="button" class="btn" id="lnk">Odkaz na kartu/nástroj</button><input type="file" id="imgf" accept="image/*" hidden></div>
   <div class="ed"><textarea name="body" id="body" aria-label="Text karty" placeholder="Píš sem… Obrázok môžeš aj vložiť (Ctrl+V) alebo pretiahnuť.">${esc(a.body)}</textarea><div class="pv md" id="pv"></div></div>
   <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:10px;flex-wrap:wrap"><div>${id?'<button type="button" class="btn bad" id="del">Zmazať</button>':''}</div>
   <div style="display:flex;gap:8px;align-items:center"><span class="status" id="sv"></span><button type="button" class="btn q" id="cancel">Zrušiť</button><button class="btn p">Uložiť</button></div></div></form>
-  <dialog id="dl"><form method="dialog"><b>Vložiť odkaz</b><input id="dlq" placeholder="Hľadať kartu alebo nástroj…"><div id="dlr"></div><div style="text-align:right;margin-top:8px"><button class="btn q">Zavrieť</button></div></form></dialog>`;
+  <dialog id="dl"><form method="dialog"><b>Vložiť odkaz</b><input id="dlq" placeholder="Hľadať kartu alebo nástroj…"><div id="dlr"></div><div style="text-align:right;margin-top:8px"><button class="btn q">Zavrieť</button></div></form></dialog>`);$('#new').style.display='none';
   const f=$('#f'),ta=$('#body');let pt;const prev=()=>{clearTimeout(pt);pt=setTimeout(()=>{$('#pv').innerHTML=md(ta.value)||'<p style="color:#868D96">Náhľad…</p>';fixImgs($('#pv'))},150)};ta.oninput=prev;prev();
   const secSel=$('#sec');const chv=()=>{$('#chl').style.visibility=secSel.value==='n'?'hidden':'visible'};chv();
   secSel.onchange=()=>{chv();const t=ta.value.trim();if(!t||Object.values(TPL).some(x=>x.trim()===t)){ta.value=TPL[secSel.value];prev()}};
@@ -327,12 +349,12 @@ async function save(id){const st=$('#st');try{if(st)st.textContent='Ukladám…'
 // ---------- nástroje ----------
 const nf=(x,d=2)=>Number(x).toLocaleString('sk-SK',{minimumFractionDigits:d,maximumFractionDigits:d});
 const pc=u=>Math.round(u*100)+' %';
-function vTools(){$('#main').innerHTML=topbar(`<a href="#">Úvod</a> / Nástroje`)+`<div class="home"><h1>Nástroje</h1><p class="lead">Každý nástroj vypíše celý postup výpočtu, aby sa dal skontrolovať. Je to pomôcka – za návrh zodpovedá projektant.</p>
-  <div class="grid">${TOOLS.map(t=>`<a class="card" href="#t/${t.id}"><b>${esc(t.n)}</b><span>${esc(t.d)}</span><span class="cnt">${esc(chName(t.ch))}</span></a>`).join('')}</div></div>`}
+function vTools(){const gs=[...new Set(TOOLS.map(t=>t.g))];page(`<a href="#">Úvod</a> / Nástroje`,`<div class="home"><h1>Nástroje</h1><p class="lead">Kalkulačky a tabuľky. Každý nástroj vypíše celý postup výpočtu, aby sa dal skontrolovať. Je to pomôcka – za návrh zodpovedá projektant.</p>
+  ${gs.map(g=>`<h2 class="gh2">${esc(g)}</h2><div class="grid">${TOOLS.filter(t=>t.g===g).map(t=>`<a class="card" href="#t/${t.id}"><b>${esc(t.n)}</b><span>${esc(t.d)}</span></a>`).join('')}</div>`).join('')}</div>`)}
 const TP={L:4,b:100,h:200,mat:'C24',sc:1,gk:1,qk:1.5,self:true,dur:'med',psi2:0.3,gG:1.35,gQ:1.5,l1:300,l2:250};
 function vTram(){let p;try{p={...TP,...JSON.parse(localStorage.getItem('lns_tram')||'{}')}}catch(e){p={...TP}}
   const num=(k,l,u,st='any')=>`<label class="l">${l}<span class="iu"><input type="number" step="${st}" name="${k}" value="${p[k]}" required><i>${u}</i></span></label>`;
-  $('#main').innerHTML=topbar(`<a href="#">Úvod</a> / <a href="#t">Nástroje</a> / Drevený trám`)+`<div class="tool"><h1>Drevený trám – prostý nosník</h1>
+  page(`<a href="#">Úvod</a> / <a href="#t">Nástroje</a> / Drevený trám`,`<div class="tool"><h1>Drevený trám – prostý nosník</h1>
   <p class="lead">Rovnomerné zaťaženie, posúdenie na ohyb, šmyk a priehyb podľa STN EN 1995-1-1. Predpoklad: tlačený okraj je zabezpečený proti klopeniu.</p>
   <div class="tl"><form id="tf" class="tin">
    <fieldset><legend>Geometria</legend>${num('L','Rozpätie L','m')}<div class="two">${num('b','Šírka b','mm','1')}${num('h','Výška h','mm','1')}</div></fieldset>
@@ -343,7 +365,7 @@ function vTram(){let p;try{p={...TP,...JSON.parse(localStorage.getItem('lns_tram
     <div class="two"><label class="l">Trvanie premenného<select name="dur">${DUR.filter(d=>d[0]!=='perm').map(([k,n])=>`<option value="${k}" ${k===p.dur?'selected':''}>${n}</option>`).join('')}</select></label>${num('psi2','ψ₂ premenného','–')}</div>
     <p class="hint">Napr. úžitkové v bytoch: strednodobé, ψ₂ = 0,3. Sneh: krátkodobé, ψ₂ = 0 (over v národnej prílohe).</p></fieldset>
    <details><summary>Súčinitele a limity priehybu</summary><div class="two">${num('gG','γ_G','–')}${num('gQ','γ_Q','–')}</div><div class="two">${num('l1','w_inst ≤ L /','–','1')}${num('l2','w_fin ≤ L /','–','1')}</div></details>
-  </form><div id="tr" class="tout"></div></div></div>`;
+  </form><div id="tr" class="tout"></div></div></div>`);
   const f=$('#tf');const run=()=>{const d=new FormData(f);const q={};for(const k of Object.keys(TP)){const v=d.get(k);q[k]=k==='mat'||k==='dur'?v:k==='self'?!!v:+v}
     try{localStorage.setItem('lns_tram',JSON.stringify(q))}catch(e){}
     if(!(q.L>0&&q.b>0&&q.h>0)){$('#tr').innerHTML='<div class="empty">Zadaj rozmery väčšie ako nula.</div>';return}
@@ -359,7 +381,7 @@ function tramOut(r,q){const m=r.m,ok=r.u<=1,cm=r.cm,cv=r.cv,durN=k=>(DUR.find(d=
   <details class="steps" open><summary>Postup výpočtu</summary>
   <h3>1. Prierez a materiál</h3><p>A = b·h = ${nf(r.A,0)} mm², W = b·h²/6 = ${nf(r.W/1e3,1)}·10³ mm³, I = b·h³/12 = ${nf(r.I/1e6,2)}·10⁶ mm⁴</p>
   <p>${m.n}: f<sub>m,k</sub> = ${nf(m.fm,1)} MPa, f<sub>v,k</sub> = ${nf(m.fv,1)} MPa, E<sub>0,mean</sub> = ${nf(m.E,0)} MPa, ρ<sub>mean</sub> = ${m.rm} kg/m³; γ<sub>M</sub> = ${nf(r.gM)} (${m.t==='r'?'rastlé drevo':'lepené lamelové drevo'})</p>
-  <p>k<sub>h</sub> = ${nf(r.kh,3)} ${m.t==='r'?(r.h<150?'(h < 150 mm → (150/h)<sup>0,2</sup> ≤ 1,3)':'(h ≥ 150 mm)'):(r.h<600?'(h < 600 mm → (600/h)<sup>0,1</sup> ≤ 1,1)':'(h ≥ 600 mm)')}, k<sub>cr</sub> = ${nf(r.kcr)}, k<sub>def</sub> = ${nf(r.kd,1)} (trieda prevádzky ${q.sc})</p>
+  <p>k<sub>h</sub> = ${nf(r.kh,3)} ${m.t==='r'?'(h < 150 mm → (150/h)<sup>0,2</sup> ≤ 1,3)':'(h < 600 mm → (600/h)<sup>0,1</sup> ≤ 1,1)'}, k<sub>cr</sub> = ${nf(r.kcr)}, k<sub>def</sub> = ${nf(r.kd,1)} (trieda prevádzky ${q.sc})</p>
   <h3>2. Zaťaženie</h3><p>${q.self?`vlastná tiaž g<sub>s</sub> = ρ·g·b·h = ${nf(r.gs,3)} kN/m; `:''}G<sub>k</sub> = ${nf(r.G,3)} kN/m, Q<sub>k</sub> = ${nf(r.Q,3)} kN/m</p>
   <table><tr><th>Kombinácia</th><th>E<sub>d</sub> [kN/m]</th><th>k<sub>mod</sub></th><th>M<sub>d</sub> [kNm]</th><th>V<sub>d</sub> [kN]</th><th>ohyb</th><th>šmyk</th></tr>
   ${r.combos.map(c=>`<tr><td>${c.n} (${durN(c.dur)})</td><td>${nf(c.Ed,3)}</td><td>${nf(c.km)}</td><td>${nf(c.M,3)}</td><td>${nf(c.V,3)}</td><td>${pc(c.um)}</td><td>${pc(c.uv)}</td></tr>`).join('')}</table>
@@ -371,21 +393,22 @@ function tramOut(r,q){const m=r.m,ok=r.u<=1,cm=r.cm,cv=r.cv,durN=k=>(DUR.find(d=
   <p class="hint">Zanedbaná je šmyková deformácia a nadvýšenie. Použité odporúčané hodnoty normy – over národnú prílohu. Klopenie nie je posúdené (predpoklad k<sub>crit</sub> = 1).</p></details>
   <div class="pfoot"><button class="btn" onclick="window.print()">Vytlačiť / PDF</button><span>Vypočítané na lnstatik.sk · ${new Date().toLocaleDateString('sk-SK')}</span></div>`}
 function vTriedy(){const ks=Object.keys(MAT);
-  $('#main').innerHTML=topbar(`<a href="#">Úvod</a> / <a href="#t">Nástroje</a> / Triedy dreva`)+`<div class="tool md"><h1>Triedy dreva a súčinitele</h1><p class="lead">Charakteristické hodnoty podľa STN EN 338 (rastlé ihličnaté drevo) a STN EN 14080 (lepené lamelové drevo, homogénne). Súčinitele podľa STN EN 1995-1-1 – odporúčané hodnoty.</p>
+  page(`<a href="#">Úvod</a> / <a href="#t">Nástroje</a> / Triedy dreva`,`<div class="tool md"><h1>Triedy dreva a súčinitele</h1><p class="lead">Charakteristické hodnoty podľa STN EN 338 (rastlé ihličnaté drevo) a STN EN 14080 (lepené lamelové drevo, homogénne). Súčinitele podľa STN EN 1995-1-1 – odporúčané hodnoty.</p>
   <div class="tw"><table><tr><th>Vlastnosť</th><th>Jedn.</th>${ks.map(k=>`<th>${k}</th>`).join('')}</tr>
   ${[['fm','f<sub>m,k</sub> ohyb','MPa',1],['ft0','f<sub>t,0,k</sub> ťah','MPa',1],['fc0','f<sub>c,0,k</sub> tlak','MPa',1],['fv','f<sub>v,k</sub> šmyk','MPa',1],['E','E<sub>0,mean</sub>','MPa',0],['E05','E<sub>0,05</sub>','MPa',0],['G','G<sub>mean</sub>','MPa',0],['rk','ρ<sub>k</sub>','kg/m³',0],['rm','ρ<sub>mean</sub>','kg/m³',0]].map(([k,n,u,d])=>`<tr><td>${n}</td><td>${u}</td>${ks.map(c=>`<td>${nf(MAT[c][k],d)}</td>`).join('')}</tr>`).join('')}</table></div>
   <h2>k<sub>mod</sub> – rastlé a lepené lamelové drevo</h2><div class="tw"><table><tr><th>Trieda prevádzky</th>${DUR.map(d=>`<th>${d[1]}</th>`).join('')}</tr>${[1,2,3].map(s=>`<tr><td>${s}</td>${DUR.map(d=>`<td>${nf(KMOD[s][d[0]])}</td>`).join('')}</tr>`).join('')}</table></div>
   <p class="hint">Trvanie zaťaženia – príklady: stále (vlastná tiaž), dlhodobé (sklady), strednodobé (úžitkové zaťaženie), krátkodobé (sneh, vietor – podľa národnej prílohy), okamžité (mimoriadne).</p>
   <h2>k<sub>def</sub> a γ<sub>M</sub></h2><div class="tw"><table><tr><th></th><th>TP 1</th><th>TP 2</th><th>TP 3</th><th>γ<sub>M</sub></th></tr>
   <tr><td>Rastlé drevo</td><td>${nf(KDEF[1],1)}</td><td>${nf(KDEF[2],1)}</td><td>${nf(KDEF[3],1)}</td><td>1,30</td></tr><tr><td>Lepené lamelové drevo</td><td>${nf(KDEF[1],1)}</td><td>${nf(KDEF[2],1)}</td><td>${nf(KDEF[3],1)}</td><td>1,25</td></tr></table></div>
-  <p class="hint">TP 1 – vnútri, vykurované (vlhkosť dreva do cca 12 %); TP 2 – pod strechou, nevykurované (do cca 20 %); TP 3 – vonku, nechránené.</p></div>`}
+  <p class="hint">TP 1 – vnútri, vykurované (vlhkosť dreva do cca 12 %); TP 2 – pod strechou, nevykurované (do cca 20 %); TP 3 – vonku, nechránené.</p></div>`)}
 
-function route(){const h=location.hash.slice(1);const [v,a,b]=h.split('/');S.id=null;S.sec=null;
-  if(v==='a'){S.id=a;const x=W.articles[a];S.sec=x?norm({...x}).sec:null;vArt(a)}
-  else if(v==='p'){S.sec='p';vPrir()}else if(v==='k'){S.sec='p';S.open[a]=true;vCh(a)}
-  else if(v==='t'){S.sec='t';if(a==='tram'){S.id='t:tram';vTram()}else if(a==='triedy'){S.id='t:triedy';vTriedy()}else vTools()}
-  else if(v==='d'){S.sec='d';vDet()}else if(v==='n'){S.sec='n';vNav()}
-  else if(v==='novy')vEdit(null,a,b);else if(v==='upravit'){S.id=a;vEdit(a)}else vHome();
+function route(keepQ){const h=location.hash.slice(1);const [v,a,b]=h.split('/');S.id=null;S.nav='';
+  if(!$('#content'))shell();if(!keepQ){S.q='';$('#q').value=''}$('#new').style.display='';
+  if(v==='a'){S.id=a;const x=W.articles[a];if(x){const n=norm({...x});S.nav=n.sec==='p'?'k:'+chOf(n.cat).k:n.sec}vArt(a)}
+  else if(v==='p'){vPrir()}else if(v==='k'){S.nav='k:'+a;vCh(a)}
+  else if(v==='t'){S.nav='t';if(a==='tram')vTram();else if(a==='triedy')vTriedy();else vTools()}
+  else if(v==='d'){S.nav='d';vDet()}else if(v==='n'){S.nav='n';vNav()}
+  else if(v==='novy')vEdit(null,a,b);else if(v==='upravit'){S.id=a;vEdit(a)}else{S.nav='home';vHome()}
   drawSide();window.scrollTo(0,0)}
 
 window.addEventListener('hashchange',()=>{if(document.body.classList.contains('on'))route()});
